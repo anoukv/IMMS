@@ -1,4 +1,4 @@
-workingDir = 'person_toy';
+workingDir = 'videoImages';
 imageNames = dir(fullfile(workingDir,'*.jpg'));
 imageNames = {imageNames.name}';
 
@@ -10,6 +10,7 @@ imageNumbers = str2double(imageStrings);
 sortedImageNames = imageNames(sortedIndices);
 
 outputVideo = VideoWriter(fullfile(workingDir,'lego.avi'));
+outputVideo.FrameRate = 10;
 open(outputVideo);
 
 for ii = 1:length(sortedImageNames)

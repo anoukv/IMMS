@@ -23,7 +23,7 @@ oldImage = im2double(rgb2gray(imread(fullfile(workingDir,sortedImageNames{1}))))
 [r, c] = getInitialCornerPoints(oldImage, Gd, regionSizeForOpticalFlow);
 
 for i = 2:length(sortedImageNames)
-    disp(i);
+    
     newImage = im2double(rgb2gray(imread(fullfile(workingDir,sortedImageNames{i}))));
 
     [r, c] = getFrameTransition(oldImage, newImage, r, c, Gd, regionSizeForOpticalFlow, imageFolder, sortedImageNames{i});
@@ -55,10 +55,8 @@ imshow(im2,[]), hold on, quiver(c, r, Vx, Vy), plot(c, r, 'ro'), hold off;
 
 print(f, '-r80', '-dtiff', strcat(imageFolder, imageName));
 
-close(f);
 
-
-transitionSpeed = 1.1;
+transitionSpeed = 0.9;
 c = c + Vx * transitionSpeed;
 r = r + Vy * transitionSpeed;
 
