@@ -3,9 +3,9 @@ im2 = im2double(rgb2gray(imread('sphere2.ppm')));
 % I1 = im2double(imread('synth1.pgm'));
 % I2 = im2double(imread('synth2.pgm'));
 
-regionSize = 1;
+regionSize = 15;
 sigma = 1.5;
 
-opticalFlow(im1, im2, regionSize, sigma);
+opticalFlow(im1, im2, regionSize, sigma, true);
 
 

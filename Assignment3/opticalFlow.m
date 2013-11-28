@@ -1,17 +1,19 @@
-function [ Vx, Vy ] = opticalFlow(I1, I2, regionSize, sigma)
+function [ Vx, Vy ] = opticalFlow(I1, I2, regionSize, sigma, plotter)
 Gd = gaussianDer(sigma);
 
 Ix = conv2(I1, Gd, 'same');
 Iy = transpose(conv2(transpose(I1), Gd, 'same'));
 It = I1 - I2;
 
-% figure,
-% subplot(1,3,1);
-% imshow(Ix,[]), title('Ix');
-% subplot(1,3,2);
-% imshow(Iy,[]), title('Iy');
-% subplot(1,3,3);
-% imshow(It,[]), title('It');
+if plotter == true
+    figure,
+    subplot(1,3,1);
+    imshow(Ix,[]), title('Ix');
+    subplot(1,3,2);
+    imshow(Iy,[]), title('Iy');
+    subplot(1,3,3);
+    imshow(It,[]), title('It');
+end
 
 x_max = floor(size(I1,1)/ regionSize);
 y_max = floor(size(I1,2)/ regionSize);
@@ -39,18 +41,14 @@ for x = 1:x_max
                 
         Vx(x,y) = offSet +(x-1)*regionSize;
         Vy(x,y) = offSet +(y-1)*regionSize;
-        
-        %U(x, y) = v(1);
-        %V(x, y) = v(2);
     end
 end
 
+if plotter == true 
+    figure,
+    imshow(I1), hold on, quiver(Vy,Vx, Vx_, Vy_), hold off;
+end
 
-
-figure,
-imshow(I1), hold on, quiver(Vy,Vx, Vx_, Vy_), hold off;
-figure, 
-quiver(U, V);
 end
 
 function v = getV(Ix, Iy, It)
