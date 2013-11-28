@@ -5,6 +5,7 @@ threshold = 0.00005;
 Gd = gaussianDer(sigma);
 n = 10;
 regionSize = 5;
+transitionSpeed = 0.75;
 
 % read im1 and im2 (just for testing)
 im1 = im2double(rgb2gray(imread('person_toy/00000001.jpg')));
@@ -19,16 +20,19 @@ It = im1 - im2;
 [H, r, c] = harris(im1, sigma, k, threshold, n, false);
 
 Vx = zeros(size(r));
-Vy = zeros(size(r));
+Vy = zeros(size(c));
+
+newR = zeros(size(r));
+newC = zeros(size(c));
 
 for x = 1:size(r)
-    for y = 1:size(c)
-        cornerCoordinates = [r(x), c(y)];
-        [vx, vy] = opticalFlowPixel(im1, im2, r(x), c(y), regionSize, sigma);
-        Vx(x) = vx;
-        Vy(y) = vy;
-    end
+    [vx, vy] = opticalFlowPixel(im1, im2, r(x), c(x), regionSize, sigma);
+    Vx(x) = vx;
+    Vy(x) = vy;
+    newR(x) = floor(r(x) + vx * transitionSpeed);
+    newC(x) = floor(c(x) + vy * transitionSpeed);
 end
 
-imshow(im1, []), hold on, plot(c, r, 'o'), quiver(c, r, Vx, Vy), hold off;
+%imshow(im1, []), hold on, plot(c, r, 'o'), quiver(c, r, Vx, Vy), hold off;
+figure, imshow(im2, []), hold on, plot(newC, newR, 'o'), hold off;
 
