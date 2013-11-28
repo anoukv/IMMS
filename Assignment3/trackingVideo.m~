@@ -23,7 +23,7 @@ oldImage = im2double(rgb2gray(imread(fullfile(workingDir,sortedImageNames{1}))))
 [r, c] = getInitialCornerPoints(oldImage, Gd, regionSizeForOpticalFlow);
 
 for i = 2:length(sortedImageNames)
-    disp(i);
+    
     newImage = im2double(rgb2gray(imread(fullfile(workingDir,sortedImageNames{i}))));
 
     [r, c] = getFrameTransition(oldImage, newImage, r, c, Gd, regionSizeForOpticalFlow, imageFolder, sortedImageNames{i});
