@@ -55,8 +55,10 @@ imshow(im2,[]), hold on, quiver(c, r, Vx, Vy), plot(c, r, 'ro'), hold off;
 
 print(f, '-r80', '-dtiff', strcat(imageFolder, imageName));
 
+close(f);
 
-transitionSpeed = 0.9;
+
+transitionSpeed = 1.1;
 c = c + Vx * transitionSpeed;
 r = r + Vy * transitionSpeed;
 

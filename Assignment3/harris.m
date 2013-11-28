@@ -1,18 +1,20 @@
-function [ H, r, c ] = harris( I, sigma, k, threshold, n )
+function [ H, r, c ] = harris( I, sigma, k, threshold, n, plotter )
 G = gaussian(sigma);
 Gd = gaussianDer(sigma);
 
 Ix = conv2(I, Gd, 'same');
-
-% subplot(1, 2, 1);
-% imshow(Ix, []);
-% title('Ix');
-
 Iy = transpose(conv2(transpose(I), Gd, 'same'));
 
-% subplot(1, 2, 2);
-% imshow(Iy, []);
-% title('Iy');
+
+if plotter == true
+    subplot(1, 2, 1);
+    imshow(Ix, []);
+    title('Ix');
+
+    subplot(1, 2, 2);
+    imshow(Iy, []);
+    title('Iy');
+end
 
 Ix2 = Ix .* Ix;
 Iy2 = Iy .* Iy;
@@ -33,7 +35,11 @@ for x = n+1:size(I, 1)-n-1
 end
 [r,c] = find(R);
 
-%figure, imshow(I, []), hold on, plot(c, r, 'ro'), hold off;
+
+if plotter == true
+    figure, imshow(I, []), hold on, plot(c, r, 'ro'), hold off;
+end
+
 
 end
 
