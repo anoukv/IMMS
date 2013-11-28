@@ -4,7 +4,7 @@ k = 0.04;
 threshold = 0.00005;
 Gd = gaussianDer(sigma);
 n = 10;
-regionSize = 5;
+regionSize = 15;
 
 % read im1 and im2 (just for testing)
 im1 = im2double(rgb2gray(imread('person_toy/00000001.jpg')));
@@ -18,17 +18,15 @@ It = im1 - im2;
 % find Harris stuff.
 [H, r, c] = harris(im1, sigma, k, threshold, n, false);
 
+%[Vx, Vy] = opticalFlow(im1, im2, regionSize, sigma);
 Vx = zeros(size(r));
 Vy = zeros(size(r));
 
 for x = 1:size(r)
     for y = 1:size(c)
-        cornerCoordinates = [r(x), c(y)];
-        [vx, vy] = opticalFlowPixel(im1, im2, r(x), c(y), regionSize, sigma);
-        Vx(x) = vx;
-        Vy(y) = vy;
+        cornerCoordinates = [r(x), c(y)]
     end
 end
 
-imshow(im1, []), hold on, plot(c, r, 'o'), quiver(c, r, Vx, Vy), hold off;
+imshow(im1, []), hold on, plot(c, r, 'o'), hold off;
 
