@@ -47,10 +47,10 @@ end
 
 
 
-%figure,
-%imshow(I1), hold on, quiver(Vy,Vx, Vx_, Vy_), hold off;
-%figure, 
-%quiver(U, V);
+figure,
+imshow(I1), hold on, quiver(Vy,Vx, Vx_, Vy_), hold off;
+figure, 
+quiver(U, V);
 end
 
 function v = getV(Ix, Iy, It)
