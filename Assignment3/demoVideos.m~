@@ -6,6 +6,9 @@ function demoVideos(readFolder, writeFolder, extension)
     k = 0.04;
     isActuallyARealCornerThreshold = 0.000005;
     betterThanNeighborsLeftAndRight = 10;
+%     readFolder = 'person_toy';
+%     writeFolder = 'videoImages/';
+%     extension = '*.jpg';
 
     % Read image locations
     imageNames = dir(fullfile(readFolder,extension));
@@ -29,12 +32,11 @@ function demoVideos(readFolder, writeFolder, extension)
         newImage = im2double(rgb2gray(imread(fullfile(readFolder,sortedImageNames{i}))));
         [r, c] = getFrameTransition(oldImage, newImage, r, c, Gd, regionSizeForOpticalFlow, writeFolder, sortedImageNames{i});
 
-        [r, c] = dropFeaturesThatArOutOfTheImage(r, c, regionSizeForOpticalFlow, size(newImage));
         oldImage = newImage;
     end
 
     % setting up the workspace
-    imageNames = dir(fullfile(writeFolder, extension));
+    imageNames = dir(fullfile(writeFolder,'*.jpg'));
     imageNames = {imageNames.name}';
 
     % sorting
@@ -63,17 +65,12 @@ c_ = -ones(size(r));
 
 counter = 1;
 for i=1:size(r,1)
-    if r(i) < imageDimensions(1)-regionSize-1 && r(i) > regionSize+1
-        if c(i) < imageDimensions(1)-regionSize-1 && c(i) > regionSize+1
-            r_(counter) = r(i);
-            c_(counter) = c(i);
-            counter = counter + 1;
+    if r < imageDimensions(1)-regionSize && r > regionSize
+        if 
         end
     end
 end
 
-r = r_(1:counter-1);
-c = c_(1:counter-1);
 
 end
 

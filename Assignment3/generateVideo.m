@@ -1,9 +1,9 @@
-readFolder = 'person_toy';
-writeFolder = 'videoImages/';
-extension = '*.jpg';
-mkdir 'videoImages/';
-
-demoVideos(readFolder, writeFolder, extension)
+% readFolder = 'person_toy';
+% writeFolder = 'videoImages/';
+% extension = '*.jpg';
+% mkdir 'videoImages/';
+% 
+% demoVideos(readFolder, writeFolder, extension)
 
 
 readFolder = 'pingpong';
