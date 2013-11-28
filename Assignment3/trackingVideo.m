@@ -5,6 +5,11 @@ Gd = gaussianDer(sigma);
 regionSizeForOpticalFlow = 7;
 imageFolder = 'videoImages/';
 
+sigmaHarris = 1.5;
+k = 0.04;
+isActuallyARealCornerThreshold = 0.000005;
+betterThanNNeighborsLeftAndRight = 10;
+
 % Read image locations
 workingDir = 'person_toy';
 imageNames = dir(fullfile(workingDir,'*.jpg'));
@@ -20,7 +25,9 @@ sortedImageNames = imageNames(sortedIndices);
 oldImage = im2double(rgb2gray(imread(fullfile(workingDir,sortedImageNames{1}))));
 
 % Get the initial feature locations:
-[r, c] = getInitialCornerPoints(oldImage, Gd, regionSizeForOpticalFlow);
+%[r, c] = getInitialCornerPoints(oldImage, Gd, regionSizeForOpticalFlow);
+[~, r, c] = harris(oldImage, sigmaHarris, k, isActuallyARealCornerThreshold, betterThanNNeighborsLeftAndRight, false);
+
 
 for i = 2:length(sortedImageNames)
     disp(i);
@@ -30,9 +37,8 @@ for i = 2:length(sortedImageNames)
 
     oldImage = newImage;
 end
-
-
 end
+
 
 function [r, c] = getFrameTransition(im1, im2, r, c, Gd, regionSizeForOpticalFlow, imageFolder, imageName)
 nPoints = size(r,1);
@@ -61,17 +67,6 @@ close(f);
 transitionSpeed = 1.1;
 c = c + Vx * transitionSpeed;
 r = r + Vy * transitionSpeed;
-
-end
-
-function [r, c] = getInitialCornerPoints(im1, Gd, regionSizeForOpticalFlow)
-
-sigma = 1.5;
-k = 0.04;
-isActuallyARealCornerThreshold = 0.000005;
-betterThanNNeighborsLeftAndRight = 10;
-
-[~, r, c] = harris(im1, sigma, k, isActuallyARealCornerThreshold, betterThanNNeighborsLeftAndRight);
 
 end
 
