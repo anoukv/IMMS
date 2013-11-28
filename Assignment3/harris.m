@@ -8,7 +8,7 @@ Gd = gaussianDer(sigma);
 Ix = conv2(I, Gd, 'same');
 Iy = transpose(conv2(transpose(I), Gd, 'same'));
 
-% Plotter method
+% Plotter
 if plotter == true
     subplot(1, 2, 1);
     imshow(Ix, []);

@@ -1,3 +1,5 @@
+% this script demos the Harris corner detection
+
 sigma = 1.5;
 k = 0.04;
 threshold = 0.00005;

@@ -1,11 +1,7 @@
-function demoVideos(readFolder, writeFolder, extension)
-    sigma = 1.0;
+function demoVideos(readFolder, writeFolder, extension, sigma, regionSizeForOpticalFlow, sigmaHarris, k, isActuallyARealCornerThreshold, betterThanNeighborsLeftAndRight)
+    
+    % create Gaussian Derivative filter
     Gd = gaussianDer(sigma);
-    regionSizeForOpticalFlow = 7;
-    sigmaHarris = 1.5;
-    k = 0.04;
-    isActuallyARealCornerThreshold = 0.000005;
-    betterThanNeighborsLeftAndRight = 10;
 
     % Read image locations
     imageNames = dir(fullfile(readFolder,extension));
@@ -23,6 +19,11 @@ function demoVideos(readFolder, writeFolder, extension)
     % Get the initial feature locations:
     [~, r, c] = harris(oldImage, sigmaHarris, k, isActuallyARealCornerThreshold, betterThanNeighborsLeftAndRight, false);
 
+    % loop over all images, create the new frames (i.e. images with
+    % keypoints and optical flow overlayed)
+    % we should also drop keypoints that are too close to the edge of the
+    % image, for optical flow we need to extract a region of a certain
+    % size, making it impossible for a keypoint to be too close to an edge
     for i = 2:length(sortedImageNames)
         disp(i);
 
@@ -33,7 +34,7 @@ function demoVideos(readFolder, writeFolder, extension)
         oldImage = newImage;
     end
 
-    % setting up the workspace
+    % setting up the workspace for writing the video
     imageNames = dir(fullfile(writeFolder, extension));
     imageNames = {imageNames.name}';
 
@@ -48,6 +49,7 @@ function demoVideos(readFolder, writeFolder, extension)
     outputVideo.FrameRate = 10;
     open(outputVideo);
 
+    % write all the previously generated images to a video file
     for ii = 1:length(sortedImageNames)
         img = imread(fullfile(writeFolder,sortedImageNames{ii}));
         writeVideo(outputVideo,img);
@@ -56,26 +58,7 @@ function demoVideos(readFolder, writeFolder, extension)
     close(outputVideo);
 end
 
-function [r, c] = dropFeaturesThatArOutOfTheImage(r, c, regionSize, imageDimensions)
 
-r_ = -ones(size(r));
-c_ = -ones(size(r));
-
-counter = 1;
-for i=1:size(r,1)
-    if r(i) < imageDimensions(1)-regionSize-1 && r(i) > regionSize+1
-        if c(i) < imageDimensions(1)-regionSize-1 && c(i) > regionSize+1
-            r_(counter) = r(i);
-            c_(counter) = c(i);
-            counter = counter + 1;
-        end
-    end
-end
-
-r = r_(1:counter-1);
-c = c_(1:counter-1);
-
-end
 
 
 
