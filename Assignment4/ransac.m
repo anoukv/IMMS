@@ -1,4 +1,4 @@
-function [ output_args ] = ransac(n, t, p)
+function [ output_args ] = ransac(x, t, p)
 % INPUT
 % n - number of iterations
 % t - set of matches
