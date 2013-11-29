@@ -17,16 +17,18 @@ function [ affineMatrix ] = affineTransformation( im1, im2 )
 [matches] = vl_ubcmatch(desc1, desc2);
 
 % now we need to find the coordinates of the matches:
+% coordinates = 2xnumberOfPoints
 coordinates1 = ones(2, size(matches, 2));
 coordinates2 = ones(2, size(matches, 2));
 
 for i = 1:size(matches, 2)
-    coordinates1(1, i) = frames1(1, i);
-    coordinates1(2, i) = frames1(2, i);
-    coordinates2(1, i) = frames2(1, i);
-    coordinates2(2, i) = frames2(2, i);
+    coordinates1(1, i) = frames1(1, matches(1, i));
+    coordinates1(2, i) = frames1(2, matches(1, i));
+    coordinates2(1, i) = frames2(1, matches(2, i));
+    coordinates2(2, i) = frames2(2, matches(2, i));
 end
 
+ransac(15, coordinates1, coordinates2, 10)
 
 end
 

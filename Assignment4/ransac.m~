@@ -1,0 +1,13 @@
+function [ transformation ] = ransac(n, coordinates1, coordinates2, p)
+% INPUT
+% n - number of iterations
+% coordinates1 / coordinates2 = 2xMatches coordinates
+% p - number of matches from total set of matches (t)
+
+for i = 1:n
+   
+end
+
+
+end
+
