@@ -28,7 +28,7 @@ for i = 1:size(matches, 2)
     coordinates2(2, i) = frames2(2, matches(2, i));
 end
 
-ransac(15, coordinates1, coordinates2, 10)
+ransac(3, coordinates1, coordinates2, 10)
 
 end
 

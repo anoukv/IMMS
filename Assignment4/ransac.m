@@ -1,27 +1,44 @@
-function [ transformation ] = ransac(n, coordinates1, coordinates2, p)
+function [ bestTransformationParameters ] = ransac(n, coordinates1, coordinates2, p)
 % INPUT
 % n - number of iterations
 % coordinates1 / coordinates2 = 2xMatches coordinates
 % p - number of matches from total set of matches (t)
 
 mostInliers = 0;
-%for i = 1:n
+bestTransformationParameters = [];
+
+for i = 1:n
     % Pick P matches at random from the total set of matches
     
     indices = randperm(size(coordinates1, 2), p);
-    data1 = coordinates1(:, indices)
-    data2 = coordinates2(:, indices)
-    [m1, m2, m3, m4, t1, t2] = getAffineTrasformation(data1, data2);
+    data1 = coordinates1(:, indices);
+    data2 = coordinates2(:, indices);
+    T = getAffineTrasformation(data1, data2);
     
     % draw something somewhere (see assignment)
     
-    % transform data1 with [m1, m2, ...]. 
-    % compare this to actual data2
+    % transform coordinates2 with [m1, m2, ...]. 
+    coordinates_ = performAffineTransformation(T, coordinates2);
+    
+    % compare this to actual coordinates1
     % every transformed pixel in 10 pixel radius of original point in data2
     % is inlier, all other outliers. If numberOfInliers > mostInliers, save
-    % the inliers (?) and [m1, m2, ...] as best model. Return [m1, m2, ..]
-%end
+  
+    inliers = 9;
+    if mostInliers < inliers
+        mostInliers = inliers;
+        bestTransformationParameters = T;
+    end
+end
 
 end
 
 
+function [coordinates_] = performAffineTransformation(T, coordinates)
+
+coordinates_ = zeros(size(coordinates));
+for i=size(coordinates,1)
+    coordinates_(i) = coordinates(i) * T;
+end
+
+end
