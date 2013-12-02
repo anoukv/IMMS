@@ -20,7 +20,7 @@ for i = 1:n
     % transform coordinates2 with [m1, m2, ...]. 
     transformedCoordinates = performAffineTransformation(M, t, coordinates1);
     
-    plotMatches(im1, im2, coordinates1, transformedCoordinates);
+    %plotMatches(im1, im2, coordinates1, transformedCoordinates);
     
     inliers = 0;
     for p=1:size(transformedCoordinates, 2)
