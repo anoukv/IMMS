@@ -1,7 +1,7 @@
-function [ M, t ] = computeAffineTransformation( im1, im2 )
+function [ bestM, bestT ] = affineTransformation( im1, im2 )
 
 % A tutorial with functions that actually exist:
-% help 
+% http://www.vlfeat.org/overview/sift.html
 
 % frames is a 4 x n matrix
 % n is the number of keypoints found
@@ -28,9 +28,7 @@ for i = 1:size(matches, 2)
     coordinates2(2, i) = frames2(2, matches(2, i));
 end
 
-[M, t] = ransac(im1, im2, 1, coordinates1, coordinates2, 10)
+[ bestM, bestT ] = ransac(3, coordinates1, coordinates2, 10);
 
-
-%plotMatches(im1, im2, coordinates1, coordinates2);
 end
 
