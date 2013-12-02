@@ -1,10 +1,11 @@
-function [ bestM, bestT ] = ransac(n, coordinates1, coordinates2, p)
+function [ bestM, bestT ] = ransac(im1, im2, n, coordinates1, coordinates2, p)
 % INPUT
 % n - number of iterations
 % coordinates1 / coordinates2 = 2xMatches coordinates
 % p - number of matches from total set of matches (t)
 
-% WE STILL NEED TO DRAW SOME THINGS, SAVE THE INLIERS? WHY?
+% WE STILL NEED TO DRAW SOME THINGS, SAVE THE INLIERS? WHY? HOW MANY
+% MATHCES DO WE NEED, SOME QUESTION ABOUT P...
 
 mostInliers = 0;
 
@@ -17,8 +18,10 @@ for i = 1:n
     [ M, t ]  = getAffineTrasformation(data1, data2);
         
     % transform coordinates2 with [m1, m2, ...]. 
-    transformedCoordinates = performAffineTransformation(M, t, coordinates1);
-
+    transformedCoordinates = performAffineTransformation(M, t, data1);
+    
+    plotMatches(im1, im2, data1, transformedCoordinates);
+    
     inliers = 0;
     for p=1:size(transformedCoordinates, 2)
         dist = euclideanDistance(transformedCoordinates(:, p), coordinates2(:, p));
