@@ -28,7 +28,7 @@ for i = 1:size(matches, 2)
     coordinates2(2, i) = frames2(2, matches(2, i));
 end
 
-[M, t] = ransac(im1, im2, 1, coordinates1, coordinates2, 10)
+[M, t] = ransac(im1, im2, 10, coordinates1, coordinates2, 10)
 
 
 %plotMatches(im1, im2, coordinates1, coordinates2);
