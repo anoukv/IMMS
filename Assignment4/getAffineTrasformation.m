@@ -1,4 +1,4 @@
-function [ m1, m2, m3, m4, t1, t2 ] = getAffineTrasformation( points1, points2 )
+function [ M, t ] = getAffineTrasformation( points1, points2 )
 
 x1 = points1(1, :);
 y1 = points1(2, :);
@@ -21,6 +21,9 @@ m3 = transformationVector(3);
 m4 = transformationVector(4);
 t1 = transformationVector(5);
 t2 = transformationVector(6);
+
+M = [m1, m2; m3, m4];
+t = [t1 ; t2];
 
 end
 
