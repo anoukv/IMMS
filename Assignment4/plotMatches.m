@@ -24,7 +24,6 @@ for i = 1:size(points1, 2)
     plot([points1(1, i), points2(1, i)], [points1(2, i), points2(2, i)]);
 end
 
-
 hold off;
 
 

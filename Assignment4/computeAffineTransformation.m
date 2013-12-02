@@ -30,11 +30,6 @@ end
 
 [M, t] = ransac(im1, im2, 1, coordinates1, coordinates2, 10)
 
-% subplot(1, 2, 1);
-% imshow(im1, []), hold on, plot(coordinates1(1, :), coordinates1(2, :), 'o'), hold off;
-% subplot(1, 2, 2);
-% imshow(im2, []), hold on, plot(coordinates2(1, :), coordinates2(2, :), 'o'), hold off;
-
 %plotMatches(im1, im2, coordinates1, coordinates2);
 end
 

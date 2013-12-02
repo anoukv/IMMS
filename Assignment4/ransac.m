@@ -18,9 +18,9 @@ for i = 1:n
     [ M, t ]  = getAffineTrasformation(data1, data2);
         
     % transform coordinates2 with [m1, m2, ...]. 
-    transformedCoordinates = performAffineTransformation(M, t, data1);
+    transformedCoordinates = performAffineTransformation(M, t, coordinates1);
     
-    plotMatches(im1, im2, data1, transformedCoordinates);
+    plotMatches(im1, im2, coordinates1, transformedCoordinates);
     
     inliers = 0;
     for p=1:size(transformedCoordinates, 2)
