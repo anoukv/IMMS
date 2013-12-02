@@ -1,4 +1,4 @@
-function [ affineMatrix ] = affineTransformation( im1, im2 )
+function [ affineMatrix ] = computeAffineTransformation( im1, im2 )
 
 % A tutorial with functions that actually exist:
 % http://www.vlfeat.org/overview/sift.html
@@ -28,7 +28,7 @@ for i = 1:size(matches, 2)
     coordinates2(2, i) = frames2(2, matches(2, i));
 end
 
-ransac(1, coordinates1, coordinates2, 10)
+[M, t] = ransac(15, coordinates1, coordinates2, 10)
 
 end
 
