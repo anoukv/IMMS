@@ -21,15 +21,10 @@ function [ M, t ] = computeAffineTransformation( im1, im2 )
 coordinates1 = ones(2, size(matches, 2));
 coordinates2 = ones(2, size(matches, 2));
 
-for i = 1:size(matches, 2)
-    coordinates1(1, i) = frames1(1, matches(1, i));
-    coordinates1(2, i) = frames1(2, matches(1, i));
-    coordinates2(1, i) = frames2(1, matches(2, i));
-    coordinates2(2, i) = frames2(2, matches(2, i));
-end
+coordinates1 = frames1([1, 2], matches(1, :));
+coordinates2 = frames2([1, 2], matches(2, :));
 
 [M, t] = ransac(im1, im2, 10, coordinates1, coordinates2, 10)
-
 
 %plotMatches(im1, im2, coordinates1, coordinates2);
 end
