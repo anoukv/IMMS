@@ -20,16 +20,22 @@ for i = 1:n
     % transform coordinates2 with [m1, m2, ...]. 
     transformedCoordinates = performAffineTransformation(M, t, coordinates1);
     
-    figure, plotMatches(im1, im2, coordinates1, transformedCoordinates);
-    title(i);
+    %plotMatches(im1, im2, coordinates1, transformedCoordinates);
     
+    inliers = 0;
+    dist = euclideanDistance(transformedCoordinates, coordinates2);
+    dist = dist < 10;
+    totalInliers = sum(sum(dist));
+    dist2 = zeros(1, size(transformedCoordinates, 2));
+    for p=1:size(transformedCoordinates, 2)
+        dist2(p) = euclideanDistance(transformedCoordinates(:, p), coordinates2(:, p));
+    end
+    dist2 = dist2 < 10;
     % compare this to actual coordinates1
     % every transformed pixel in 10 pixel radius of original point in data2
     % is inlier, all other outliers. If numberOfInliers > mostInliers, save
-    dist = euclideanDistance(transformedCoordinates, coordinates2) < 10;
-    inliers = sum(sum(dist));
   
-    % save the set of inliers? Do we really need to do this?
+    % save the set of inliers? Are we really doing this?
     if mostInliers < inliers
         mostInliers = inliers;
         bestM = M;
