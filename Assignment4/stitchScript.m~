@@ -1,0 +1,24 @@
+% stitch script
+left = im2single(rgb2gray(imread('left.jpg')));
+right = im2single(rgb2gray(imread('right.jpg')));
+n = 10;
+p = 10;
+
+subplot(1, 2, 1);
+imshow(left, []);
+subplot(1, 2, 2);
+imshow(right, []);
+
+[ bestM, bestT ] = computeAffineTransformation(im1, im2, n, p);
+
+
+
+T = maketform('affine', [bestM(1,1), bestM(1,2); bestM(2,1), bestM(2,2); -bestT']);
+[x, y] = tformfwd(T,[1 size(f1,2)], [1 size(f1,1)]);
+
+xdata = [min(1,x(1)) max(size(f2,2),x(2))];
+ydata = [min(1,y(1)) max(size(f2,1),y(2))];
+
+f12 = imtransform(f1,T,'Xdata',xdata,?YData?,ydata);
+f22 = imtransform(f2, maketform('affine', [1 0 0; 0 1 0; 0 0 1]),
+?Xdata?,xdata,?YData?,ydata); imshow(max(f12,f22));

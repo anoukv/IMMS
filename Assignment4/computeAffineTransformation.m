@@ -1,4 +1,4 @@
-function [ M, t ] = computeAffineTransformation( im1, im2 )
+function [ M, t ] = computeAffineTransformation( im1, im2, n, p )
 
 % A tutorial with functions that actually exist:
 % help 
@@ -24,7 +24,7 @@ coordinates2 = ones(2, size(matches, 2));
 coordinates1 = frames1([1, 2], matches(1, :));
 coordinates2 = frames2([1, 2], matches(2, :));
 
-[M, t] = ransac(im1, im2, 10, coordinates1, coordinates2, 10)
+[M, t] = ransac(im1, im2, n, coordinates1, coordinates2, p)
 
 %plotMatches(im1, im2, coordinates1, coordinates2);
 end

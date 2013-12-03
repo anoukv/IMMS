@@ -20,8 +20,7 @@ for i = 1:n
     % transform coordinates2 with [m1, m2, ...]. 
     transformedCoordinates = performAffineTransformation(M, t, coordinates1);
     
-    figure, plotMatches(im1, im2, coordinates1, transformedCoordinates);
-    title(i);
+    %figure, plotMatches(im1, im2, coordinates1, transformedCoordinates);
     
     % compare this to actual coordinates1
     % every transformed pixel in 10 pixel radius of original point in data2
