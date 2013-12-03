@@ -12,10 +12,15 @@ title('im2');
 
 [ bestM, bestT ] = computeAffineTransformation(im1, im2, n, p);
 
+% because we are going from 2 to 1
 bestM = inv(bestM);
+bestT = -bestT;
 
-T = maketform('affine', [bestM(1,1), bestM(1,2); bestM(2,1), bestM(2,2); -bestT']);
+I = transformImage(im2, bestM, bestT);
+%T = maketform('affine', [bestM(1,1), bestM(1,2); bestM(2,1), bestM(2,2); -bestT']);
 
-figure, imshow(imtransform(im1, T));
+figure, imshow(I);
 title('Transformed im1');
+
+figure, imshow(im2), hold on, imshow(I), hold off;
 
