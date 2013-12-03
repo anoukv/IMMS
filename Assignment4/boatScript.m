@@ -8,6 +8,8 @@ im2 = im2single(imread('img2.pgm'));
 
 [ bestM, bestT ] = computeAffineTransformation(im1, im2);
 
-T = maketform('affine', [bestM(1,1), bestM(1,2); bestM(2,1), bestM(2,2); bestT']);
-imshow(imtransform(im2, T));
+bestM = inv(bestM);
+
+T = maketform('affine', [bestM(1,1), bestM(1,2); bestM(2,1), bestM(2,2); -bestT']);
+imshow(imtransform(im1, T));
 figure, imshow(im2);
