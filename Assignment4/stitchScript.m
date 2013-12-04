@@ -1,18 +1,13 @@
-% stitch script
+% stitch script 
 left = im2single(rgb2gray(imread('left.jpg')));
 right = im2single(rgb2gray(imread('right.jpg')));
-n = 1000;
-p = 20;
+n = 18;
+p = 4;
 
-<<<<<<< HEAD
-[ bestM, bestT ] = computeAffineTransformation(left, right, n, p);
-
-bestM = inv(bestM);
-=======
 [ M, t ] = computeAffineTransformation(left, right, n, p);
->>>>>>> 606f197e03eb88aa884d379989c627ea5d399cea
 
 M = inv(M);
+t = -t;
 
 I = transformImage(left, M, t);
 

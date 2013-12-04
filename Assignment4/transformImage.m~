@@ -1,8 +1,0 @@
-function [ transformedImage ] = transformImage( im, M, t )
-[width, length] = size(im);
-
-for x = 1:width:
-
-
-end
-
