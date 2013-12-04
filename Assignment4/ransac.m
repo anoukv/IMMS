@@ -30,6 +30,8 @@ for i = 1:n
   
     % save the set of inliers? Do we really need to do this?
     if mostInliers < inliers
+        disp('Current best from iteration:');
+        disp(i);
         mostInliers = inliers;
         bestM = M;
         bestT = t;
