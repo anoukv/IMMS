@@ -1,13 +1,14 @@
-function [ M, t ] = computeAffineTransformation( im1, im2, n, p )
+function [ M, t ] = computeAffineTransformation( im1, im2, n, p, plotter )
 
-% A tutorial with functions that actually exist:
-% help 
+% extract the SIFT feature-locations and descriptors
 
 % frames is a 4 x n matrix
 % n is the number of keypoints found
 % for every keypoint frames holds x, y, scale and orientation
 [frames1, desc1] = vl_sift(im1);
 [frames2, desc2] = vl_sift(im2);
+
+% compute the matches between descriptors
 
 % matches is a 2 x n matrix
 % n is the number of matches
@@ -20,12 +21,11 @@ function [ M, t ] = computeAffineTransformation( im1, im2, n, p )
 % coordinates = 2xnumberOfPoints
 coordinates1 = ones(2, size(matches, 2));
 coordinates2 = ones(2, size(matches, 2));
-
 coordinates1 = frames1([1, 2], matches(1, :));
 coordinates2 = frames2([1, 2], matches(2, :));
 
-[M, t] = ransac(im1, im2, n, coordinates1, coordinates2, p)
+% perform ransac to find the best matches
+[M, t] = ransac(im1, im2, n, coordinates1, coordinates2, p, plotter)
 
-%plotMatches(im1, im2, coordinates1, coordinates2);
 end
 

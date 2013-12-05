@@ -1,40 +1,52 @@
-function [ bestM, bestT ] = ransac(im1, im2, n, coordinates1, coordinates2, p)
+function [ bestM, bestT, setInliers ] = ransac(im1, im2, n, coordinates1, coordinates2, p, plot)
 % INPUT
 % n - number of iterations
 % coordinates1 / coordinates2 = 2xMatches coordinates
 % p - number of matches from total set of matches (t)
 
-% WE STILL NEED TO DRAW SOME THINGS, SAVE THE INLIERS? WHY? HOW MANY
-% MATHCES DO WE NEED, SOME QUESTION ABOUT P...
+% p should be greater than 4. This is the minimum amount of points
+% necessary to describe an affine transformation, thus four points are
+% needed to compute one
 
+% initialize the greatest number of inliers found
 mostInliers = 0;
 
+% perform n iterations
 for i = 1:n
-    % Pick P matches at random from the total set of matches
     
+    % get p random indices for the points that are to be used
     indices = randperm(size(coordinates1, 2), p);
+    
+    % extract the two random sets of points
     data1 = coordinates1(:, indices);
     data2 = coordinates2(:, indices);
+    
+    % compute the affine transformation that transforms data1 into data2
     [ M, t ]  = getAffineTrasformation(data1, data2);
         
-    % transform coordinates2 with [m1, m2, ...]. 
+    % transform coordinates2 with the affine transformation found in the step above 
     transformedCoordinates = performAffineTransformation(M, t, coordinates1);
     
-    %figure, plotMatches(im1, im2, coordinates1, transformedCoordinates);
+    if plot == true
+        figure, plotMatches(im1, im2, coordinates1, transformedCoordinates);
+    end
     
-    % compare this to actual coordinates1
-    % every transformed pixel in 10 pixel radius of original point in data2
-    % is inlier, all other outliers. If numberOfInliers > mostInliers, save
+    % compute the euclidean distance between the original set of
+    % coordinates (set 2) and the transformed coordinates (set 1)
+    % if the euclidean distance < 10, we say it is an inlier (1) otherwise,
+    % it is an outlier (0)
     dist = euclideanDistance(transformedCoordinates, coordinates2) < 10;
+    
+    % sum the ones from the distances matrix, giving the number of inliers
     inliers = sum(sum(dist));
-  
-    % save the set of inliers? Do we really need to do this?
+
+    % if the number of inliers exceeds the largest number of inliers so far
+    % we will save the transformation
     if mostInliers < inliers
-        disp('Current best from iteration:');
-        disp(i);
         mostInliers = inliers;
         bestM = M;
         bestT = t;
+        setInliers = dist;
     end
 end
 
