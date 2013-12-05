@@ -49,7 +49,7 @@ else
     row2 = [C;D]';
 
     rightTranslated = [row2; row1];
-    
+
     leftResampled = zeros(size(rightTranslated));
     leftResampled(1:size(left,1), 1:size(left,2)) = left;
 
