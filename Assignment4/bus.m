@@ -29,8 +29,7 @@ if builtin
    ydata = [min(1,y(1)) max(size(right,1),y(2))];
 
    leftNew = imtransform(imread('left.jpg'),T,'Xdata',xdata,'YData',ydata);
-   rightNew = imtransform(imread('right.jpg'), maketform('affine', [1 0
-0; 0 1 0; 0 0 1]),'Xdata',xdata,'YData',ydata);
+   rightNew = imtransform(imread('right.jpg'), maketform('affine', [1 0 0; 0 1 0; 0 0 1]),'Xdata',xdata,'YData',ydata);
 
    imshow(max(leftNew,rightNew));
 else
