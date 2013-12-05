@@ -11,6 +11,8 @@ M = inv(M);
 
 T = maketform('affine', [M; t']);
 
+leftNew = imtransform(imread('left.jpg'),T,'Xdata',xdata,'YData',ydata);
+rightNew = imtransform(imread('right.jpg'), maketform('affine', [1 0 0; 0 1 0; 0 0 1]),'Xdata',xdata,'YData',ydata);
 [x, y] = tformfwd(T,[1 size(left,2)], [1 size(left,1)]);
 
 xdata = [min(1,x(1)) max(size(right,2),x(2))];
