@@ -18,13 +18,24 @@ p = 4;
 
 %[ M, t ] = computeAffineTransformation(left, right, n, p);
 
-m = [0.9875, -0.0878 ; 0.0833, 0.9956];
+M = [0.9875, -0.0878 ; 0.0833, 0.9956];
 t = [-204.9172 ; -54.7405];
 
 T = maketform('affine', [M; t']);
 [rightNew, XDATA, YDATA] = imtransform(right, T);
 
-size(rightNew)
-size(left)
+t = abs(ceil(t));
+newImage = zeros(size(left, 1) + size(rightNew, 1) - t(1), size(left, 2) + size(rightNew, 2) - t(2));
+newImage(1:size(left, 1), 1:size(left, 2)) = left;
+[h, w] = size(newImage);
 
-imshow(rightNew);
+for x = 1:h
+    for y = 11:w
+        p = [x;y] - t;
+        if inImage(size(newImage), p(1), p(2))
+            newImage(p(1), p(2)) = rightNew(p(1), p(2));
+        end
+    end
+end
+
+imshow(newImage);

@@ -12,7 +12,6 @@ sideToSide(1:size(im2,1), size(im1, 2)+1:end) = im2;
 % move the second pair of points to the side...
 points2(1, :) = points2(1, :) + size(im1, 2);
 
-
 pointsX = [points1(1, :), points2(1, :)];
 pointsY = [points1(2, :), points2(2, :)];
 
