@@ -11,13 +11,6 @@ c2 = M * c2;
 c3 = M * c3;
 c4 = M * c4;
 
-% [c1,c2,c3,c4]
-% 
-% x = abs(c1(1)-c4(1));
-% x = max(x, abs(c2(1)-c3(1)));
-% y = abs(c1(2)-c4(2));
-% y = max(y, abs(c2(2)-c3(2)));
-
 newH = floor(max(abs(c1(1) - c4(1)), abs(c2(1) - c3(1))));
 newW = floor(max(abs(c1(2) - c4(2)), abs(c2(2) - c3(2))));
 

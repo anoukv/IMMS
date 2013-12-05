@@ -16,15 +16,32 @@ right = im2single(rgb2gray(imread('right.jpg')));
 n = 10;
 p = 4;
 
-%[ M, t ] = computeAffineTransformation(left, right, n, p);
+% [ M, t ] = computeAffineTransformation(left, right, n, p);
 
-m = [0.9875, -0.0878 ; 0.0833, 0.9956];
-t = [-204.9172 ; -54.7405];
+M = [0.9875, -0.0878 ; 0.0833, 0.9956];
+t = [-204.9172; -54.7405];
 
 T = maketform('affine', [M; t']);
 [rightNew, XDATA, YDATA] = imtransform(right, T);
 
-size(rightNew)
-size(left)
+rightNew = rightNew';
 
-imshow(rightNew);
+t = abs(ceil(t));
+
+A = zeros(t(1), t(2));
+B = zeros(size(rightNew, 1), t(2));
+C = zeros(t(1), size(rightNew, 2));
+D = rightNew;
+
+row1 = [A;B]';
+row2 = [C;D]';
+
+rightTranslated = [row1;row2;];
+
+leftResampled = zeros(size(rightTranslated));
+leftResampled(1:size(left,1), 1:size(left,2)) = left;
+
+
+figure, imshow(max(leftResampled,rightTranslated));
+
+clear();
