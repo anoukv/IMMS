@@ -33,7 +33,7 @@ imshow(matlab);
 title('Transformed by MATLAB')
 
 % just one ransac iteration, to show the plot where all points are
-% transformed and connected by lines.
+% transformed and connected by lines. (IT MIGHT NOT BE THE BEST!!)
 [ M, t ] = computeAffineTransformation(im1, im2, 1, p, true);
 clear();
 
