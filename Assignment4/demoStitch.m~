@@ -39,8 +39,7 @@ rightNew = rightNew';
 t = abs(ceil(t));
 
 % Get the four corners of the transpositioned right image.
-% Three corners are padding and the fourth is the rotated and scaled right
-% image
+% Three corners are padding and the fourth is 
 A = zeros(t(1), t(2));
 B = zeros(size(rightNew, 1), t(2));
 C = zeros(t(1), size(rightNew, 2));
@@ -49,10 +48,8 @@ D = rightNew;
 row1 = [A;B]';
 row2 = [C;D]';
 
-% Combine the rows.
 rightTranslated = [row2; row1];
 
-% get a copy of the left image in a larger frame.
 leftResampled = zeros(size(rightTranslated));
 leftResampled(1:size(left,1), 1:size(left,2)) = left;
 
