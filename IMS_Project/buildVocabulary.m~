@@ -1,0 +1,4 @@
+function [  ] = buildVocabulary(numberOfClusters, numberOfTrainingImages, )
+
+end
+
