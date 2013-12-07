@@ -1,4 +1,33 @@
-function [  ] = buildVocabulary(numberOfClusters, numberOfTrainingImages, )
+function [  ] = buildVocabulary(vocabularySize, numberOfTrainingImages)
+
+% vocabularySize - this is the number of words in the vocabulary, also it
+% is the number of clusters that we are looking for with k-means.
+% numberOfTrainingImages - number of images used to build the vocabulary
+
+
+folderNames = {'data/motorbikes_train', 'data/cars_train', 'data/faces_train', 'data/airplanes_train'};
+extension = '*.jpg';
+
+for i = 1:size(folderNames, 2)
+    folder = folderNames{i};
+    imageNames = dir(fullfile(folder,extension));
+    imageNames = {imageNames.name}';
+
+    imageStrings = regexp([imageNames{:}],'(\d*)','match');
+    imageNumbers = str2double(imageStrings);
+    [~,sortedIndices] = sort(imageNumbers);
+    sortedImageNames = imageNames(sortedIndices);
+    
+    images = sortedImageNames(1:numberOfTrainingImages);
+    for im = 1:size(images, 1)
+        folder
+        images(i)
+        I = imread(strcat(folder, images(i));
+        figure, imshow(I);
+        %[frames, desc] = vl_sift(images(im));
+    end
+end
+
 
 end
 
