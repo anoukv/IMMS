@@ -31,7 +31,7 @@ end
 disp('Finished extracting descriptors');
 size(allDescriptors, 1)
 disp('Now clustering by kmeans');
-Result = kmeans(allDescriptors, vocabularySize);
+result = kmeans(allDescriptors, vocabularySize);
 
 
 
