@@ -1,4 +1,4 @@
-function [  ] = buildVocabulary(vocabularySize, numberOfTrainingImages)
+function [ Result ] = buildVocabulary(vocabularySize, numberOfTrainingImages)
 
 % vocabularySize - this is the number of words in the vocabulary, also it
 % is the number of clusters that we are looking for with k-means.
@@ -9,7 +9,7 @@ extension = '*.jpg';
 
 allDescriptors = zeros(0, 0);
 for i = 1:size(folderNames, 2)
-    folder = folderNames{i};
+    folder = folderNames{i}
     imageNames = dir(fullfile(folder,extension));
     imageNames = {imageNames.name}';
 
@@ -23,13 +23,16 @@ for i = 1:size(folderNames, 2)
         I = im2single(rgb2gray(imread(fullfile(folder,images{im}))));
         [frames, desc] = vl_sift(I);
         desc = desc';
-        size(desc)
         for count = 1:size(desc, 1)
             allDescriptors(size(allDescriptors, 1)+1, :) = desc(count, :);
         end
     end
 end
-size(allDescriptors)
+disp('Finished extracting descriptors');
+size(allDescriptors, 1)
+disp('Now clustering by kmeans');
+Result = kmeans(allDescriptors, vocabularySize);
+
 
 
 end
