@@ -39,6 +39,7 @@ for i = 1:size(folderNames, 2)
         end
     end
 end
+
 disp('Finished extracting descriptors');
 size(allDescriptors, 1)
 disp('Now clustering by kmeans');

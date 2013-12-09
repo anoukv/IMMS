@@ -1,0 +1,5 @@
+function [ v ] = kernel1(data1, data2)
+
+dis
+end
+
