@@ -16,4 +16,3 @@ for i = 1:size(indices,1)
 end
 
 end
-
