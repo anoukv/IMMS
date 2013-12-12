@@ -45,7 +45,7 @@ size(allDescriptors, 1)
 disp('Now clustering by kmeans');
 
 warning('off','all');
-[~, clusters] = kmeans(allDescriptors, numberOfClusters, 'Options', statset('MaxIter', MaxIter));
+clusters = vl_kmeans(allDescriptors, numberOfClusters, 'Options', statset('MaxIter', MaxIter));
 warning('on','all');
 
 save('Vocabulary', 'clusters');
