@@ -10,9 +10,9 @@ end
 distances = vl_alldist2(vocabulary', double(desc));
 [~, indices] = min(distances);
 
-bins = zeros(size(vocabulary,1),1);
-for i = 1:size(indices,1)
-    bins(indices()) = bins(indices()) + 1;
-end
+bins = hist(indices, size(vocabulary, 1))
+% for i = 1:size(indices,1)
+%     bins(indices()) = bins(indices()) + 1;
+% end
 
 end
