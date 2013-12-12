@@ -1,4 +1,4 @@
-function [ bins ] = quantize(vocabulary, image)
+function [ bins, indices ] = quantize(vocabulary, image)
 
 thisImage = imread(image);
 if ndims(thisImage) == 3    % Not all images are coloured.
