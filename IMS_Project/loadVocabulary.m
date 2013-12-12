@@ -4,4 +4,3 @@ v = load('Vocabulary', 'clusters');
 v = v.clusters;
 
 end
-
