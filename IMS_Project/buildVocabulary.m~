@@ -26,7 +26,9 @@ for i = 1:size(folderNames, 2)
     end
     
     for im = 1:size(images, 1)
-        desc = getFeaturesForImage( (fullfile(folder, images{im})) );
+        thisImage = imread(fullfile(folder, images{im}));
+        
+        desc = getFeaturesForImage( location );
 
         allDescriptors = [ allDescriptors ; desc'];
     end

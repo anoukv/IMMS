@@ -13,4 +13,5 @@ distances = vl_alldist2(vocabulary', double(desc));
 
 bins = hist(indices, size(vocabulary, 1));
 bins = bins / size(desc, 2);
+
 end
