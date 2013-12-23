@@ -1,4 +1,4 @@
-function [] = buildBins( numberOfImagesPerClass, Vocabulary )
+function [] = buildBins(startNumber, numberOfImagesPerClass, Vocabulary )
 start = clock;
 disp('Building bins...');
 
@@ -13,10 +13,10 @@ for i = 1:size(classNames, 2)
     
     n = numberOfImagesPerClass;
     if n > size(descNames, 1)
-        n = size(descNames, 1)
+        n = size(descNames, 1);
     end
     
-    for im = 1:n
+    for im = startNumber:n
         desc = load(strcat('../../IMS_data/Descriptors/', classNames{i}, '/', descNames{im}), 'desc');
         desc = desc.desc';
         bins = descriptors4vocabulary2bins(desc,Vocabulary);
