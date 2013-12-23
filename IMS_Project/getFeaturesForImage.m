@@ -17,7 +17,6 @@ else
     % Gray image:
     descriptors(1+128*DI:128*DI+128, 1:size(desc,2)) = desc;
     DI = DI + 1;
-
     
     % RGB images:
     [~, desc] = vl_dsift(thisImage(:,:,1), 'Step', binSize/2, 'Size', binSize);
