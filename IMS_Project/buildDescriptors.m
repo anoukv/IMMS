@@ -27,7 +27,7 @@ for i = 1:size(folderNames, 2)
     for im = 1:size(images, 1)
         desc = getFeaturesForImage( fullfile(folder, images{im}) );
         if ~ isequal(desc,0)
-            save(strcat('compiled/Descriptors/', classNames{i}, '/image', int2str(im)), 'desc');
+            save(strcat('../../IMS_data/Descriptors/', classNames{i}, '/image', int2str(im)), 'desc');
         end
     end
 end
