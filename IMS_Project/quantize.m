@@ -1,14 +1,6 @@
-function [ bins, indices ] = quantize(vocabulary, image)
+function [ bins ] = quantize(vocabulary, desc)
 
-thisImage = imread(image);
-
-if ndims(thisImage) == 3    % Not all images are coloured.
-    thisImage = rgb2gray(thisImage);
-end
-
-[~, desc] = vl_sift(im2single(thisImage));
-
-distances = vl_alldist2(vocabulary', double(desc));
+distances = vl_alldist2(vocabulary', single(desc));
 [~, indices] = min(distances);
 
 bins = hist(indices, size(vocabulary, 1));
