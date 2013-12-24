@@ -10,14 +10,11 @@ for i=1:size(classNames,2)
     bins = loadBins(classNames{i});
     results = zeros(size(bins,1),2);
     disp(size(bins, 1));
-    results = zeros(size(bins, 1), 2);
+    reu
     % change iterator back to size(bins, 1)
-    for j=1:size(bins, 1)
+    for j=1:1
         [t, p] = predictClass(classifiers, bins(j,:), i);
-        results(j, 1) = t;
-        results(j, 2) = p;
     end
-    means(i, :) = sum(results)./size(bins, 1);
 end
 
 means
