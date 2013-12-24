@@ -1,9 +1,0 @@
-function [ output_args ] = loadBins( class )
-
-folder = strcat('../../IMS_data/Binned/', class);
-binNames = dir(fullfile(folder, '*.mat'));
-binNames = {binNames.name}';
-zeros(size(binNames, 1), 
-
-end
-
