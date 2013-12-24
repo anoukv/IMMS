@@ -1,9 +1,14 @@
-function [] = buildDescriptors( first, last )
+function [] = buildDescriptors( first, last, trainOrTest )
 start = clock;
 disp('Compiling descriptors...');
 
-folderNames = {'data/motorbikes_train', 'data/cars_train', 'data/faces_train', 'data/airplanes_train'};
-classNames = {'motorbikes_train', 'cars_train', 'faces_train', 'airplanes_train'};
+if strcmp(trainOrTest, 'train')
+    folderNames = {'data/motorbikes_train', 'data/cars_train', 'data/faces_train', 'data/airplanes_train'};
+    classNames = {'motorbikes_train', 'cars_train', 'faces_train', 'airplanes_train'};
+else
+    folderNames = {'data/motorbikes_test', 'data/cars_test', 'data/faces_test', 'data/airplanes_test'};
+    classNames = {'motorbikes_test', 'cars_test', 'faces_test', 'airplanes_test'};
+end
 
 extension = '*.jpg';
 

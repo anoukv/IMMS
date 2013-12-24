@@ -1,8 +1,13 @@
-function [] = buildBins(startNumber, numberOfImagesPerClass, Vocabulary )
+function [] = buildBins(startNumber, numberOfImagesPerClass, Vocabulary, trainOrTest )
 start = clock;
 disp('Building bins...');
 
-classNames = {'motorbikes_train', 'cars_train', 'faces_train', 'airplanes_train'};
+if strcmp(trainOrTest, 'train')
+    classNames = {'motorbikes_train', 'cars_train', 'faces_train', 'airplanes_train'};
+else
+    classNames = {'motorbikes_test', 'cars_test', 'faces_test', 'airplanes_test'};
+end
+
 
 for i = 1:size(classNames, 2)
     disp(strcat(32,32,32,32,'Started on class',32, classNames{i}));
