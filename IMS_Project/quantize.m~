@@ -1,5 +1,8 @@
 function [ bins, indices ] = quantize(vocabulary, desc)
 
+size(desc)
+size(vocabulary)
+
 distances = vl_alldist2(vocabulary', single(desc));
 [~, indices] = min(distances);
 

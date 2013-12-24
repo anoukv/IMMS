@@ -18,8 +18,8 @@ for i = 1:size(classNames, 2)
     
     for im = startNumber:n
         desc = load(strcat('../../IMS_data/Descriptors/', classNames{i}, '/', descNames{im}), 'desc');
-        desc = desc.desc';
-        bins = descriptors4vocabulary2bins(desc,Vocabulary);
+        desc = desc.desc;
+        bins = quantize(Vocabulary,desc);
         save(strcat('../../IMS_data/Binned/', classNames{i}, '/image', int2str(im)), 'bins');
     end
 end
