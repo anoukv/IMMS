@@ -30,8 +30,8 @@ for i = 1:size(folderNames, 2)
     end
     
     for im = 1:size(images, 1)
-%         desc = getFeaturesForImage( fullfile(folder, images{im}) );
-        desc = getSimpleSift( fullfile(folder, images{im}) );
+        desc = getFeaturesForImage( fullfile(folder, images{im}) );
+%         desc = getSimpleSift( fullfile(folder, images{im}) );
         if ~ isequal(desc,0)
             save(strcat('../../IMS_data/Descriptors/', classNames{i}, '/image', int2str(im)), 'desc');
         end
