@@ -13,7 +13,7 @@ probabilities = [prob1, prob2, prob3, prob4];
 
 if max(predictions) == 1
     disp(':)')
-    indices = find(predicitons);
+    indices = find(predictions);
     probsForOnes = probabilities(indices);
     [probability, indexForMostProb] = max(probsForOnes);
     prediction = indices(indexForMostProb);
