@@ -31,7 +31,7 @@ function [ model ] = trainSVM( class )
 % training = [positiveExamples;negativeExamples];
 
 [training, groundTruth] = generateTrainingData( class );
-svmopts = ['-c 2 -g 1'];
+svmopts = '-c 2 -g 1';
 model = svmtrain(groundTruth, training, svmopts);
 
 end
