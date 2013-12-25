@@ -1,6 +1,6 @@
 function [ desc ] = getSimpleSift( image )
 
-thisImage = imread(location);
+thisImage = imread(image);
 
 if ndims(thisImage) ~= 3
     rgb2gray(thisImage)
