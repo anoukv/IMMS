@@ -9,6 +9,7 @@ for i=1:size(classNames,2)
     disp(classNames{i})
     bins = loadBins(classNames{i});
     results = zeros(size(bins,1),2);
+    disp(strcat('Images in this class', 32, int2str(size(bins, 1))));
     for j=1:size(bins, 1)
         [t, p] = predictClass(classifiers, bins(j,:), i);
         results(j, 1) = t;
