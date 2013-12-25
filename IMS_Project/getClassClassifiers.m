@@ -30,6 +30,7 @@ positiveExamples = loadBins(class);
 groundTruth = [ones(size(positiveExamples, 1), 1);zeros(size(negativeExamples, 1), 1)];
 training = [positiveExamples;negativeExamples];
 model = svmtrain(groundTruth, training);
+size(training)
 
 end
 
