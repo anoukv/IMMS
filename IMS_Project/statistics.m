@@ -1,6 +1,6 @@
-function [] = statistics()
+function [] = statistics(sizeOfRun, vocSizes, vocNimages, colorspace, dense)
 
-classifiers = getClassClassifiers();
+classifiers = getClassClassifiers(training, truth);
 
 classNames = {'motorbikes_test', 'cars_test', 'faces_test', 'airplanes_test'};
 
@@ -29,7 +29,6 @@ results = [ap, precision]
 MAP = sum(ap) / 4
 
 end
-
 
 function [precision, AP] = averagePrecision(data)
 % data should be in format: [truthValue]

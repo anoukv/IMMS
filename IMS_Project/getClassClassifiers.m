@@ -1,19 +1,4 @@
 function [ classifiers ] = getClassClassifiers()
-
-motorbikes = trainSVM('motorbikes_train');
-cars = trainSVM('cars_train');
-faces = trainSVM('faces_train');
-airplanes = trainSVM('airplanes_train');
-
-classifiers = [motorbikes, cars, faces, airplanes];
-
-end
-
-
-function [ model ] = trainSVM( class )
-
-[training, groundTruth] = generateTrainingData( class );
-
 % -t kernel_type : set type of kernel function (default 2)
 % 	0 -- linear: u'*v
 % 	1 -- polynomial: (gamma*u'*v + coef0)^degree
@@ -24,8 +9,17 @@ function [ model ] = trainSVM( class )
 
 svmopts = '-c 2 -g 1 -t 1';
 
-model = svmtrain(groundTruth, training, svmopts);
+classNames = {'motorbikes_test', 'cars_test', 'faces_test', 'airplanes_test'};
+classifiers = zeros(1, size(classNames, 2));
+
+for i = 1:size(classNames, 2)
+    [training, groundTruth] = generateData( classNames{i}, 'train' );
+    model = svmtrain(groundTruth, training, svmopts);
+    classifiers(1, i) = model;
+end
+
 
 end
+
 
 
