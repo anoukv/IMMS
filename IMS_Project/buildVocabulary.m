@@ -4,8 +4,6 @@ start = clock;
 allDescriptors = loadAllDescriptors(numberOfImagesPerClass, dens, colorspace);
 allDescriptors = single(allDescriptors);
 
-size(allDescriptors)
-
 suffix = strcat('_', int2str(dens), '_', colorspace);
 clusterSizes = clusterSizes';
 for i = 1:size(clusterSizes,1)

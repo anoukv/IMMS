@@ -9,19 +9,18 @@ suffix = strcat('_', int2str(dens), '_', colorspace);
 for i = 1:size(classNames, 2)
     folder = strcat('../../IMS_data/Descriptors/', classNames{i});
     
-    descNames = dir(fullfile(folder, '*.mat'));
+    descNames = dir(fullfile(folder, strcat('*', suffix, '.mat')));
     descNames = {descNames.name}';
     
     n = numberOfImagesPerClass;
     if n > size(descNames, 1)
         n = size(descNames, 1);
     end
+    
     for im = 1:n
-        if size(strfind(descNames{im}, suffix),1) ~= 0
-            desc = load(strcat('../../IMS_data/Descriptors/', classNames{i}, '/', descNames{im}), 'desc');
-            len = len + size(desc.desc',1);
-            sizeOfDescCollection = size(desc.desc, 1);
-        end
+        desc = load(strcat('../../IMS_data/Descriptors/', classNames{i}, '/', descNames{im}), 'desc');
+        len = len + size(desc.desc',1);
+        sizeOfDescCollection = size(desc.desc, 1);
     end
 end
 
@@ -30,7 +29,7 @@ count = 1;
 for i = 1:size(classNames, 2)
     folder = strcat('../../IMS_data/Descriptors/', classNames{i});
     
-    descNames = dir(fullfile(folder, '*.mat'));
+    descNames = dir(fullfile(folder, strcat('*', suffix, '.mat')));
     descNames = {descNames.name}';
     
     n = numberOfImagesPerClass;
@@ -39,13 +38,11 @@ for i = 1:size(classNames, 2)
     end
     
     for im = 1:n
-        if size(strfind(descNames{im}, suffix),1) ~= 0
-            desc = load(strcat('../../IMS_data/Descriptors/', classNames{i}, '/', descNames{im}), 'desc');
-            desc = desc.desc';
-            for d = 1:size(desc,1)
-                allDescriptors(count,:) = desc(d,:);
-                count = count + 1;
-            end
+        desc = load(strcat('../../IMS_data/Descriptors/', classNames{i}, '/', descNames{im}), 'desc');
+        desc = desc.desc';
+        for d = 1:size(desc,1)
+            allDescriptors(count,:) = desc(d,:);
+            count = count + 1;
         end
     end
 end
