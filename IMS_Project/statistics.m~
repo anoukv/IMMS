@@ -20,14 +20,15 @@ for i=1:size(classNames,2)
     means(i, :) = sum(results)./size(bins, 1);
 end
 
+means
 motorbikesRows = chaosMatrix(:, 3) == 1;
 carsRows = chaosMatrix(:, 3) == 2;
 facesRows = chaosMatrix(:, 3) == 3;
 airplanesRows = chaosMatrix(:, 3) == 4;
 
-motorbikes = chaosMatrix(motorbikesRows == 1, :);
-cars = chaosMatrix(carsRows == 1, :);
-faces = chaosMatrix(facesRows == 1, :);
+motorbikes = chaosMatrix(motorbikesRows == 1, :)
+cars = chaosMatrix(carsRows == 1, :)
+faces = chaosMatrix(facesRows == 1, :)
 airplanes = chaosMatrix(airplanesRows == 1, :)
 
 
