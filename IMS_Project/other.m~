@@ -1,8 +1,0 @@
-function [  ] = other( )
-classifiers = getClassClassifiers();
-
-classNames = {'motorbikes_test', 'cars_test', 'faces_test', 'airplanes_test'};
-
-
-end
-

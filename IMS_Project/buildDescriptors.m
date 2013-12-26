@@ -1,4 +1,4 @@
-function [] = buildDescriptors( first, last, trainOrTest )
+function [] = buildDescriptors( last, trainOrTest, dens, colorspace )
 start = clock;
 disp('Compiling descriptors...');
 
@@ -12,6 +12,7 @@ end
 
 extension = '*.jpg';
 
+suffix = strcat('_', dens, '_', colorspace);
 for i = 1:size(folderNames, 2)
     folder = folderNames{i};
     disp(strcat('Started on folder: ', 32, folder));
@@ -30,10 +31,9 @@ for i = 1:size(folderNames, 2)
     end
     
     for im = 1:size(images, 1)
-        %desc = getFeaturesForImage( fullfile(folder, images{im}) );
-        desc = getSimpleSift( fullfile(folder, images{im}) );
+        desc = getFeaturesForImage( fullfile(folder, images{im}), dens, colorspace);
         if ~ isequal(desc,0)
-            save(strcat('../../IMS_data/Descriptors/', classNames{i}, '/image', int2str(im)), 'desc');
+            save(strcat('../../IMS_data/Descriptors/', classNames{i}, '/image', int2str(im), suffix), 'desc');
         end
     end
 end

@@ -1,4 +1,4 @@
-function [ ] = buildVocabulary(clusterSizes, numberOfImagesPerClass)
+function [ ] = buildVocabulary(clusterSizes, numberOfImagesPerClass, dens, colorspace)
 start = clock;
 disp('Building vocabulary.');
 
@@ -9,6 +9,7 @@ disp(strcat(32,32, 'Found', 32, int2str(size(allDescriptors, 1)), ' descriptors'
 
 disp(strcat(32,32, 'Now clustering by kmeans'));
 
+suffix = strcat('_', dens, '_', colorspace);
 clusterSizes = clusterSizes';
 for i = 1:size(clusterSizes,1)
     disp(strcat(32,32,32,32,'Clustering for size',32, int2str(clusterSizes(i))));
@@ -17,7 +18,7 @@ for i = 1:size(clusterSizes,1)
 %     [~, clusters] = kmeans(allDescriptors, clusterSizes(i), 'start', 'cluster', 'options', statset('MaxIter', 20));
     [~, clusters] = kmeans(allDescriptors, clusterSizes(i), 'options', statset('MaxIter', 100));
     warning('on','all');
-    save(strcat('../../IMS_data/Vocabulary_', int2str(clusterSizes(i)), 'x', int2str(numberOfImagesPerClass)), 'clusters');
+    save(strcat('../../IMS_data/Vocabulary_', int2str(clusterSizes(i)), 'x', int2str(numberOfImagesPerClass), suffix), 'clusters');
 end
 
 stop = clock;
