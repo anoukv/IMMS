@@ -1,6 +1,5 @@
 function [] = buildDescriptors( last, trainOrTest, dens, colorspace )
 start = clock;
-disp('Compiling descriptors...');
 
 if strcmp(trainOrTest, 'train')
     folderNames = {'data/motorbikes_train', 'data/cars_train', 'data/faces_train', 'data/airplanes_train'};
@@ -15,7 +14,6 @@ extension = '*.jpg';
 suffix = strcat('_', int2str(dens), '_', colorspace);
 for i = 1:size(folderNames, 2)
     folder = folderNames{i};
-    disp(strcat('Started on folder: ', 32, folder));
     imageNames = dir(fullfile(folder,extension));
     imageNames = {imageNames.name}';
 
@@ -38,10 +36,7 @@ for i = 1:size(folderNames, 2)
     end
 end
 
-disp('Finished extracting and saving descriptors');
-
 stop = clock;
-disp(strcat('Seconds passed:', int2str(round(etime(stop, start)))));
 
 end
 

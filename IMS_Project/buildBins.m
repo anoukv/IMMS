@@ -1,6 +1,5 @@
 function [] = buildBins(startNumber, numberOfImagesPerClass, Vocabulary, trainOrTest, dens, colorspace )
 start = clock;
-disp('Building bins...');
 
 if strcmp(trainOrTest, 'train')
     classNames = {'motorbikes_train', 'cars_train', 'faces_train', 'airplanes_train'};
@@ -10,7 +9,6 @@ end
 
 suffix = strcat('_', int2str(dens), '_', colorspace);
 for i = 1:size(classNames, 2)
-    disp(strcat(32,32,32,32,'Started on class',32, classNames{i}));
     folder = strcat('../../IMS_data/Descriptors/', classNames{i});
     
     descNames = dir(fullfile(folder, '*.mat'));
@@ -22,19 +20,16 @@ for i = 1:size(classNames, 2)
     end
     
     for im = startNumber:n
-        if size(strfind(suffix, descNames{im}),1) ~= 0
+        if size(strfind(descNames{im}, suffix),1) ~= 0
             desc = load(strcat('../../IMS_data/Descriptors/', classNames{i}, '/', descNames{im}), 'desc');
             desc = desc.desc;
             bins = quantize(Vocabulary,desc);
-            save(strcat('../../IMS_data/Binned/', classNames{i}, '/image', int2str(im)), 'bins');
+            save(strcat('../../IMS_data/Binned/', classNames{i}, '/image', int2str(im), suffix), 'bins');
         end
     end
 end
 
-disp('Finished building bins.');
-
 stop = clock;
-disp(strcat('Seconds passed:', int2str(round(etime(stop, start)))));
 
 end
 

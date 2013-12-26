@@ -26,30 +26,30 @@ else
             else
                 [~, desc] = sift(rgb2gray(thisImage));
             end
-            descriptors = desc;
+            descriptors = desc';
 
-        case 'RGB'
+        case 'caps_rgb'
             % RGB images:
             if dens
                 [~, desc] = sift(R, 'Step', binSize/2, 'Size', binSize);
             else
                 [~, desc] = sift(R);
             end
-            descriptors = [descriptors ; desc];
+            descriptors = [descriptors ; desc'];
 
             if dens
                 [~, desc] = sift(G, 'Step', binSize/2, 'Size', binSize);
             else
                 [~, desc] = sift(G);
             end
-            descriptors = [descriptors ; desc];
+            descriptors = [descriptors ; desc'];
 
             if dens
                 [~, desc] = sift(B, 'Step', binSize/2, 'Size', binSize);
             else
                 [~, desc] = sift(B);
             end
-            descriptors = [descriptors ; desc];
+            descriptors = [descriptors ; desc'];
             
         case 'rgb'
             S = R + G + B;
@@ -67,21 +67,21 @@ else
             else
                 [~, desc] = sift(r);
             end
-            descriptors = [descriptors ; desc];
+            descriptors = [descriptors; desc'];
 
             if dens
                 [~, desc] = sift(g, 'Step', binSize/2, 'Size', binSize);
             else
                 [~, desc] = sift(g);
             end
-            descriptors = [descriptors ; desc];
+            descriptors = [descriptors ; desc'];
             
             if dens
                 [~, desc] = sift(b, 'Step', binSize/2, 'Size', binSize);
             else
                 [~, desc] = sift(b);
             end
-            descriptors = [descriptors ; desc];
+            descriptors = [descriptors ; desc'];
 
         case 'opp'
             % Opponent space:
@@ -99,23 +99,25 @@ else
             else
                 [~, desc] = sift(O1);
             end
-            descriptors = [descriptors ; desc];
+            descriptors = [descriptors ; desc'];
 
             if dens
                 [~, desc] = sift(O2, 'Step', binSize/2, 'Size', binSize);
             else
                 [~, desc] = sift(O2);
             end
-            descriptors = [descriptors ; desc];
+            descriptors = [descriptors ; desc'];
             
             if dens
                 [~, desc] = sift(O3, 'Step', binSize/2, 'Size', binSize);
             else
                 [~, desc] = sift(O3);
             end
-            descriptors = [descriptors; desc];
+            descriptors = [descriptors; desc'];
     end
+    descriptors = descriptors';
 end
+
 end 
 
 
