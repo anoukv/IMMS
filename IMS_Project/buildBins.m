@@ -8,7 +8,7 @@ else
     classNames = {'motorbikes_test', 'cars_test', 'faces_test', 'airplanes_test'};
 end
 
-suffix = strcat('_', dens, '_', colorspace);
+suffix = strcat('_', int2str(dens), '_', colorspace);
 for i = 1:size(classNames, 2)
     disp(strcat(32,32,32,32,'Started on class',32, classNames{i}));
     folder = strcat('../../IMS_data/Descriptors/', classNames{i});
