@@ -5,7 +5,8 @@ if sizeOfRun < testSize
     testSize = sizeOfRun;
 end
 
-colorspaces = {'rgb', 'caps_rgb', 'gray', 'opp'};
+% colorspaces = {'rgb', 'caps_rgb', 'gray', 'opp'};
+colorspaces = {'opp'};
 dens = [1,0];
 
 if doDescriptors
