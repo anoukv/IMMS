@@ -1,14 +1,5 @@
 function [] = buildScript( sizeOfRun, vocSizes, vocNimages, doDescriptors, doVocabulary, doBins )
 
-if nargin == 0
-    sizeOfRun = 100;
-end
-
-if nargin == 1
-    vocSizes = [3];
-    vocNimages = 4;
-end
-
 testSize = 50;
 if sizeOfRun < testSize
     testSize = sizeOfRun;
