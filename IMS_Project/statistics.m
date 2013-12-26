@@ -6,9 +6,7 @@ classNames = {'motorbikes_test', 'cars_test', 'faces_test', 'airplanes_test'};
 
 chaosMatrix = zeros(0, 0);
 for i=1:size(classNames,2)
-    %disp(classNames{i})
     bins = loadBins(classNames{i});
-    %disp(strcat('Images in this class', 32, int2str(size(bins, 1))));
     for j=1:size(bins, 1)
         [truthValue, prob, prediction] = predictClass(classifiers, bins(j,:), i);
         chaosMatrix(size(chaosMatrix,1) +1, :) = [truthValue, prob, prediction];   
@@ -28,6 +26,7 @@ airplanes = sortrows(chaosMatrix((chaosMatrix(:, 3) == 4) == 1, :), -2);
 ap = [ap1;ap2;ap3;ap4];
 precision = [p1;p2;p3;p4];
 results = [ap, precision]
+MAP = sum(ap) / 4
 
 end
 
