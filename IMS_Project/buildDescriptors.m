@@ -12,7 +12,7 @@ end
 
 extension = '*.jpg';
 
-suffix = strcat('_', dens, '_', colorspace);
+suffix = strcat('_', int2str(dens), '_', colorspace);
 for i = 1:size(folderNames, 2)
     folder = folderNames{i};
     disp(strcat('Started on folder: ', 32, folder));
