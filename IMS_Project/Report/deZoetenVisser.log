@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.1415926-1.40.11 (TeX Live 2010) (format=pdflatex 2010.12.3)  26 DEC 2013 13:55
+This is pdfTeX, Version 3.1415926-1.40.11 (TeX Live 2010) (format=pdflatex 2010.12.3)  26 DEC 2013 13:56
 entering extended mode
  \write18 enabled.
  file:line:error style messages enabled.
@@ -218,19 +218,19 @@ File: umsb.fd 2009/06/22 v3.00 AMS symbols B
 {/usr/local/texlive/2010/texmf-var/fonts/map/pdftex/updmap/pdftex.map}]
 (./deZoetenVisser.aux) ) 
 Here is how much of TeX's memory you used:
- 2065 strings out of 493747
- 28789 string characters out of 3143546
- 85192 words of memory out of 3000000
- 5346 multiletter control sequences out of 15000+200000
+ 2066 strings out of 493747
+ 28797 string characters out of 3143546
+ 85240 words of memory out of 3000000
+ 5347 multiletter control sequences out of 15000+200000
  9489 words of font info for 36 fonts, out of 3000000 for 9000
  714 hyphenation exceptions out of 8191
- 41i,6n,24p,353b,199s stack positions out of 5000i,500n,10000p,200000b,50000s
+ 41i,7n,24p,353b,199s stack positions out of 5000i,500n,10000p,200000b,50000s
 </usr/local/texlive/2010/texmf-dist/fonts/type1/public/
 amsfonts/cm/cmbx12.pfb></usr/local/texlive/2010/texmf-dist/fonts/type1/public/a
 msfonts/cm/cmr10.pfb></usr/local/texlive/2010/texmf-dist/fonts/type1/public/ams
 fonts/cm/cmr12.pfb></usr/local/texlive/2010/texmf-dist/fonts/type1/public/amsfo
 nts/cm/cmr17.pfb>
-Output written on deZoetenVisser.pdf (1 page, 48206 bytes).
+Output written on deZoetenVisser.pdf (1 page, 52286 bytes).
 PDF statistics:
  24 PDF objects out of 1000 (max. 8388607)
  16 compressed objects within 1 object stream
