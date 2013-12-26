@@ -6,7 +6,7 @@ classNames = {'motorbikes_test', 'cars_test', 'faces_test', 'airplanes_test'};
 
 chaosMatrix = zeros(0, 0);
 for i=1:size(classNames,2)
-    disp(classNames{i})
+    %disp(classNames{i})
     bins = loadBins(classNames{i});
     %disp(strcat('Images in this class', 32, int2str(size(bins, 1))));
     for j=1:size(bins, 1)
@@ -38,6 +38,7 @@ function [precision, AP] = averagePrecision(data)
 Mc = sum(data);
 n = size(data, 1);
 summationResult = 0;
+
 for i = 1:n
     summationResult = summationResult + data(i) / i;
 end
