@@ -1,6 +1,6 @@
-function [] = statistics(sizeOfRun, vocSizes, vocNimages, colorspace, dense)
+function [] = statistics()
 
-classifiers = getClassClassifiers(training, truth);
+classifiers = getClassClassifiers();
 
 classNames = {'motorbikes_test', 'cars_test', 'faces_test', 'airplanes_test'};
 

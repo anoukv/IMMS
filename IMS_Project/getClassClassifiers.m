@@ -10,7 +10,7 @@ function [ classifiers ] = getClassClassifiers()
 svmopts = '-c 2 -g 1 -t 1';
 
 classNames = {'motorbikes_test', 'cars_test', 'faces_test', 'airplanes_test'};
-classifiers = zeros(1, size(classNames, 2));
+
 
 for i = 1:size(classNames, 2)
     [training, groundTruth] = generateData( classNames{i}, 'train' );
