@@ -44,7 +44,7 @@ for i=1:size(colorspaces,2)
             buildBins(1, sizeOfRun, v, 'train',  dens(d), colorspaces{i});
             buildBins(1, testSize, v, 'test',  dens(d), colorspaces{i});
         end
-    en
+    end
 end
 
 end
