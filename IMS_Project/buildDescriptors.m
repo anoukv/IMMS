@@ -25,7 +25,7 @@ for i = 1:size(folderNames, 2)
     sortedImageNames = imageNames(sortedIndices);
     
     if size(sortedImageNames,1) > last
-        images = sortedImageNames(first:last);
+        images = sortedImageNames(1:last);
     else
         images = sortedImageNames;
     end
