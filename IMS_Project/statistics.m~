@@ -20,18 +20,23 @@ for i=1:size(classNames,2)
     means(i, :) = sum(results)./size(bins, 1);
 end
 
-means
 motorbikesRows = chaosMatrix(:, 3) == 1;
 carsRows = chaosMatrix(:, 3) == 2;
 facesRows = chaosMatrix(:, 3) == 3;
 airplanesRows = chaosMatrix(:, 3) == 4;
 
-motorbikes = chaosMatrix(motorbikesRows == 1, :)
-cars = chaosMatrix(carsRows == 1, :)
-faces = chaosMatrix(facesRows == 1, :)
-airplanes = chaosMatrix(airplanesRows == 1, :)
+motorbikes = sortrows(chaosMatrix(motorbikesRows == 1, [1 2]), -2);
+cars = sortrows(chaosMatrix(carsRows == 1, [1 2]), -2);
+faces = sortrows(chaosMatrix(facesRows == 1, [1 2]), -2);
+airplanes = sortrows(chaosMatrix(airplanesRows == 1, [1 2]), -2)
 
 
+end
+
+
+function [precision, AP] = averagePrecision(data)
+
+% data should be in format: [truthValue, probability]
 
 end
 
