@@ -1,11 +1,11 @@
-function [ output_args ] = buildScript( sizeOfRun, vocSizes, vocNimages )
+function [ output_args ] = buildScript( sizeOfRun, vocSizes, vocNimage )
 
 if nargin == 0
     sizeOfRun = 100;
 end
 if nargin == 1
     vocSizes = [10];
-    vocNimages = 50;
+    vocNimage = 50;
 end
 
 colorspaces = {'gray', 'rgb', 'RGB', 'opp'};
