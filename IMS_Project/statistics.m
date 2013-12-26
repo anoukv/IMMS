@@ -1,12 +1,12 @@
-function [] = statistics()
+function [] = statistics(dense, colorspace)
 
-classifiers = getClassClassifiers();
+classifiers = getClassClassifiers(dense, colorspace);
 
 classNames = {'motorbikes_test', 'cars_test', 'faces_test', 'airplanes_test'};
 
 chaosMatrix = zeros(0, 0);
 for i=1:size(classNames,2)
-    bins = loadBins(classNames{i});
+    bins = loadBins(classNames{i}, dense, colorspace);
     for j=1:size(bins, 1)
         [truthValue, prob, prediction] = predictClass(classifiers, bins(j,:), i);
         chaosMatrix(size(chaosMatrix,1) +1, :) = [truthValue, prob, prediction];   
@@ -29,7 +29,6 @@ results = [ap, precision]
 MAP = sum(ap) / 4
 
 end
-
 
 function [precision, AP] = averagePrecision(data)
 % data should be in format: [truthValue]
