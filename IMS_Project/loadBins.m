@@ -1,15 +1,16 @@
 function [ allBins ] = loadBins( class, dens, colorspace)
 
 folder = strcat('../../IMS_data/Binned/', class);
+suffix = strcat('_', int2str(dens), '_', colorspace);
 
-binNames = dir(fullfile(folder, '*.mat'));
+
+binNames = dir(fullfile(folder, strcat('*', suffix, '.mat')));
 binNames = {binNames.name}';
 
 allBins = zeros(0,0);
 
-suffix = strcat('_', int2str(dens), '_', colorspace);
 for im = 1:size(binNames,1)
-    bin = load(strcat('../../IMS_data/Binned/', class, '/', binNames{im}, suffix), 'bins');
+    bin = load(strcat('../../IMS_data/Binned/', class, '/', binNames{im}), 'bins');
     allBins(im, :) = bin.bins;
 end
 
