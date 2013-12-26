@@ -15,6 +15,10 @@ else
         sift = @vl_sift;
     end
     
+    % rgb images:
+    R = thisImage(:,:,1);
+    G = thisImage(:,:,2);
+    B = thisImage(:,:,3);
     switch colorspace
         case 'gray'
             if dens
@@ -27,32 +31,27 @@ else
         case 'RGB'
             % RGB images:
             if dens
-                [~, desc] = sift(rgb2gray(thisImage), 'Step', binSize/2, 'Size', binSize);
+                [~, desc] = sift(R, 'Step', binSize/2, 'Size', binSize);
             else
-                [~, desc] = sift(rgb2gray(thisImage));
+                [~, desc] = sift(R);
             end
             descriptors = [descriptors ; desc];
 
             if dens
-                [~, desc] = sift(rgb2gray(thisImage), 'Step', binSize/2, 'Size', binSize);
+                [~, desc] = sift(G, 'Step', binSize/2, 'Size', binSize);
             else
-                [~, desc] = sift(rgb2gray(thisImage));
+                [~, desc] = sift(G);
             end
             descriptors = [descriptors ; desc];
 
             if dens
-                [~, desc] = sift(rgb2gray(thisImage), 'Step', binSize/2, 'Size', binSize);
+                [~, desc] = sift(B, 'Step', binSize/2, 'Size', binSize);
             else
-                [~, desc] = sift(rgb2gray(thisImage));
+                [~, desc] = sift(B);
             end
             descriptors = [descriptors ; desc];
             
         case 'rgb'
-            % rgb images:
-            R = thisImage(:,:,1);
-            G = thisImage(:,:,2);
-            B = thisImage(:,:,3);
-
             S = R + G + B;
 
             r = R ./ S;
@@ -64,23 +63,23 @@ else
             b(isnan(b)) = 0;
 
             if dens
-                [~, desc] = sift(rgb2gray(thisImage), 'Step', binSize/2, 'Size', binSize);
+                [~, desc] = sift(r, 'Step', binSize/2, 'Size', binSize);
             else
-                [~, desc] = sift(rgb2gray(thisImage));
+                [~, desc] = sift(r);
             end
             descriptors = [descriptors ; desc];
 
             if dens
-                [~, desc] = sift(rgb2gray(thisImage), 'Step', binSize/2, 'Size', binSize);
+                [~, desc] = sift(g, 'Step', binSize/2, 'Size', binSize);
             else
-                [~, desc] = sift(rgb2gray(thisImage));
+                [~, desc] = sift(g);
             end
             descriptors = [descriptors ; desc];
             
             if dens
-                [~, desc] = sift(rgb2gray(thisImage), 'Step', binSize/2, 'Size', binSize);
+                [~, desc] = sift(b, 'Step', binSize/2, 'Size', binSize);
             else
-                [~, desc] = sift(rgb2gray(thisImage));
+                [~, desc] = sift(b);
             end
             descriptors = [descriptors ; desc];
 
@@ -96,23 +95,23 @@ else
             O3 = (R + G + B) / sqrt(3);
 
             if dens
-                [~, desc] = sift(rgb2gray(thisImage), 'Step', binSize/2, 'Size', binSize);
+                [~, desc] = sift(O1, 'Step', binSize/2, 'Size', binSize);
             else
-                [~, desc] = sift(rgb2gray(thisImage));
+                [~, desc] = sift(O1);
             end
             descriptors = [descriptors ; desc];
 
             if dens
-                [~, desc] = sift(rgb2gray(thisImage), 'Step', binSize/2, 'Size', binSize);
+                [~, desc] = sift(O2, 'Step', binSize/2, 'Size', binSize);
             else
-                [~, desc] = sift(rgb2gray(thisImage));
+                [~, desc] = sift(O2);
             end
             descriptors = [descriptors ; desc];
             
             if dens
-                [~, desc] = sift(rgb2gray(thisImage), 'Step', binSize/2, 'Size', binSize);
+                [~, desc] = sift(O3, 'Step', binSize/2, 'Size', binSize);
             else
-                [~, desc] = sift(rgb2gray(thisImage));
+                [~, desc] = sift(O3);
             end
             descriptors = [descriptors; desc];
     end
