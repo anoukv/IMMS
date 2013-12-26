@@ -1,4 +1,4 @@
-function [truthValue, probability ] = predictClass( classifiers, hist, trueClass )
+function [truthValue, probability, prediction ] = predictClass( classifiers, hist, trueClass )
 
 truth = zeros(4, 1);
 truth(trueClass) = 1;

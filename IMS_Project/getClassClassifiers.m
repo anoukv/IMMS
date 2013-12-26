@@ -13,7 +13,7 @@ end
 function [ model ] = trainSVM( class )
 
 [training, groundTruth] = generateTrainingData( class );
-svmopts = '-c 2 -g 1';
+svmopts = '-c 2 -g 1 -t 2';
 model = svmtrain(groundTruth, training, svmopts);
 
 end
