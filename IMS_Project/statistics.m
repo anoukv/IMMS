@@ -1,17 +1,22 @@
-function [results] = statistics(dense, colorspace, kernel, trainingSize)
+function [results, MAP, raPrecision] = statistics(dense, colorspace, kernel, trainingSize)
 
 classifiers = getClassClassifiers(dense, colorspace, kernel, trainingSize);
 
 classNames = {'motorbikes_test', 'cars_test', 'faces_test', 'airplanes_test'};
 
 chaosMatrix = zeros(0, 0);
+good = 0;
+total = 0;
 for i=1:size(classNames,2)
     bins = loadBins(classNames{i}, dense, colorspace);
     for j=1:size(bins, 1)
         [truthValue, prob, prediction] = predictClass(classifiers, bins(j,:), i);
-        chaosMatrix(size(chaosMatrix,1) +1, :) = [truthValue, prob, prediction];   
+        chaosMatrix(size(chaosMatrix,1) +1, :) = [truthValue, prob, prediction];  
+        good = good + truthValue;
+        total = total+1;
     end
 end
+raPrecision = good / total;
 motorbikes = sortrows(chaosMatrix((chaosMatrix(:, 3) == 1) == 1, :), -2);
 cars = sortrows(chaosMatrix((chaosMatrix(:, 3) == 2) == 1, :), -2);
 faces = sortrows(chaosMatrix((chaosMatrix(:, 3) == 3) == 1, :), -2);
@@ -24,8 +29,8 @@ airplanes = sortrows(chaosMatrix((chaosMatrix(:, 3) == 4) == 1, :), -2);
 
 ap = [ap1;ap2;ap3;ap4];
 precision = [p1;p2;p3;p4];
-results = [ap, precision]
-MAP = sum(ap) / 4
+results = [ap, precision];
+MAP = sum(ap) / 4;
 
 end
 
