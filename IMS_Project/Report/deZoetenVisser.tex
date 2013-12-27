@@ -1,21 +1,16 @@
 \documentclass[11pt]{article}
 \usepackage{geometry}                % See geometry.pdf to learn the layout options. There are lots.
 \geometry{letterpaper}                   % ... or a4paper or a5paper or ... 
-%\geometry{landscape}                % Activate for for rotated page geometry
-%\usepackage[parfill]{parskip}    % Activate to begin paragraphs with an empty line rather than an indent
 \usepackage{graphicx}
 \usepackage{amssymb}
 \usepackage{epstopdf}
-\DeclareGraphicsRule{.tif}{png}{.png}{`convert #1 `dirname #1`/`basename #1 .tif`.png}
+\usepackage{float}
 
 \title{Bag-of-Words based Image Classification}
 \author{R\'emi de Zoeten and Anouk Visser}
-%\date{}                                           % Activate to display a given date or no date
 
 \begin{document}
 \maketitle
-%\section{}
-%\subsection{}
 \section{Introduction}
 In this report we will discuss the implementation and results of a system for image classification. The system can tell if there is an object of one of four given classes (motorbikes, cars, faces and airplanes) in an image. The classification system is based on a Bag-of-Words approach, meaning that the Support Vector Machine that performs the classification uses histograms of words for training and classification of an image. The words are obtained by extracting descriptors from a set of training images and cluster them using the \textit{kmeans} algorithm.  
 
@@ -29,7 +24,19 @@ As an evaluation measure we have used the Mean Average Precision. We provide eve
 
 \section{Evaluation}
 
+\subsection{Size of the training set}
+The first experiment we will discuss measures the performance of the system for all different methods of SIFT (dense and key point combined with all colorspaces results in eight methods). We have set out the Mean Average Precision against the number of images that were used to train the SVM. The results of this experiment can be found in figure \ref{trainingSizes}. The first thing that stands out is the rather large difference between the key point SIFT features and the dense SIFT features. It appears that dense SIFT features perform much better than key point SIFT features. Performance of all methods increases rapidly up until using approximately 40 training images. However, after this point there is only a slight increase in performance when increasing the training size. Only key point SIFT applied to the rob colorspace shows a sudden peak in performance, we are not sure whether this is actually happening or that we can consider this as noise in the data. 
+\begin{figure}[H]
+  \centering
+    \includegraphics[width=0.75\textwidth]{trainingSizes}
+      \caption{}
+      \label{trainingSizes}
+\end{figure}
 
+\subsection{Size of the vocabulary}
+
+\section{Conclusion}
+In this report we have discussed our implementation of a system for image classification based on a Bag-of-Words approach. We have shown its performance for different sizes of the training data, different vocabulary sizes, different SIFT features for different colorspaces and different kernels used to train the SVM. Unfortunately we did not have the computing power to perform any larger tests (for instance larger vocabularies based on larger training sets). However, we found that the results using smaller vocabulary sizes were above expectations. 
 %Please, make a simple document with four ranked lists of test images as discussed in Section 2.6. This document should also contain all your settings (size of visual vocabulary, number of positive and negative samples, and so on), Average Precision per class, and Mean Average Precision.
 
 
