@@ -1,4 +1,7 @@
 function [truthValue, probability, prediction ] = predictClass( classifiers, hist, trueClass )
+% Predicts the class of a given histogram according to different
+% classifiers. The class is assigned to the classifier that is most
+% confident, or least confident if all classifiers reject the image.
 
 truth = -ones(4, 1);
 truth(trueClass) = 1;
