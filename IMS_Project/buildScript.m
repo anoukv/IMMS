@@ -6,7 +6,7 @@ if sizeOfRun < testSize
 end
 
 colorspaces = {'rgb', 'caps_rgb', 'gray', 'opp'};
-dens = [1,0];
+dens = [0,1];
 
 if doDescriptors
     disp('Extracting descriptors');
@@ -22,9 +22,9 @@ end
 
 if doVocabulary
     disp('Building vocabularies');
-    for i=1:size(colorspaces,2)
-        disp(strcat('Started on color:',32, colorspaces{i}));
-        for d=1:size(dens,2)
+    for d=1:size(dens,2)
+        disp(strcat('Started on dens:',32, int2str(dens(d))));
+        for i=1:size(colorspaces,2)
             buildVocabulary(vocSizes, vocNimages, dens(d), colorspaces{i});
         end
     end

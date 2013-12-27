@@ -1,16 +1,9 @@
-<<<<<<< HEAD
-voc_size = [20];
-numberOfImagesPerClass = [5];
-dense = [0];
-colorspace = {'gray', 'rgb', 'caps_rgb', 'opp'};
-trainingSizes = [199];
-=======
-voc_size = [3]; % we'll choose this the largest
-numberOfImagesPerClass = [4]; % we'll choose this the largest
+
+voc_size = [50]; % we'll choose this the largest
+numberOfImagesPerClass = [10]; % we'll choose this the largest
 dense = [0, 1];
 colorspace = {'gray', 'rgb', 'caps_rgb', 'opp'};
-trainingSizes = [10]; % we'll choose this the largest
->>>>>>> 5e12a97c2e08a6a706b28b8e4ba608073691f94e
+trainingSizes = [199]; % we'll choose this the largest
 
 resultsForColorSpaces = zeros(2*size(colorspace, 2), 2);
 
@@ -23,12 +16,9 @@ for d=1:size(dense, 2)
                 buildBins(1, max(trainingSizes), v, 'train', dense(d), colorspace{c});
                 buildBins(1, max(trainingSizes), v, 'test', dense(d), colorspace{c});
                 for trainSize=1:size(trainingSizes, 2)
-<<<<<<< HEAD
-                   statistics(dense(d), colorspace{c}, '-t 3 -q 1', trainingSizes(trainSize));
-=======
                    [results, MAP, raPrecision] = statistics(dense(d), colorspace{c}, '-t 2 -q 1', trainingSizes(trainSize));
                    raPrecision
->>>>>>> 5e12a97c2e08a6a706b28b8e4ba608073691f94e
+
                 end
             end
         end
