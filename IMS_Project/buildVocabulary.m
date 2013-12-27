@@ -10,10 +10,6 @@ allDescriptors = single(allDescriptors);
 suffix = strcat('_', int2str(dens), '_', colorspace);
 clusterSizes = clusterSizes';
 for i = 1:size(clusterSizes,1)
-    
-    % clusters = vl_kmeans(allDescriptors, clusterSizes(i));
-    % [~, clusters] = kmeans(allDescriptors, clusterSizes(i), 'options', statset('MaxIter', 100));
-    % [~, clusters] = kmeans(allDescriptors, clusterSizes(i), 'start', 'cluster', 'options', statset('MaxIter', 20));
     try
         warning('off','all');
         clusters = vl_kmeans(allDescriptors', clusterSizes(i), 'initialization', 'PLUSPLUS', 'algorithm', 'elkan');
