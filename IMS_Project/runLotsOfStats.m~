@@ -3,7 +3,11 @@ numberOfImagesPerClass = [4]; % we'll choose this the largest
 voc_size = [3]; % we'll choose this the largest
 dense = [0, 1];
 colorspace = {'gray', 'rgb', 'caps_rgb', 'opp'};
+<<<<<<< HEAD
 trainingSizes = [1, 200]; % we'll choose this the largest
+=======
+trainingSizes = [200]; % we'll choose this the largest
+>>>>>>> 537424b68e8840a6080d0588e3f9fd251033d5c2
 
 resultsForColorSpaces = zeros(2*size(colorspace, 2), 1);
 
@@ -29,3 +33,7 @@ resultsForColorSpaces
 
 
 
+<<<<<<< HEAD
+=======
+function [score] = getCorrect(dens, colorspace, '-b 1 -q', trainingSizes(trainSize)
+>>>>>>> 537424b68e8840a6080d0588e3f9fd251033d5c2

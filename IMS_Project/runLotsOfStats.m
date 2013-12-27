@@ -1,6 +1,6 @@
 
-numberOfImagesPerClass = [4]; % we'll choose this the largest
-voc_size = [3]; % we'll choose this the largest
+numberOfImagesPerClass = [5]; % we'll choose this the largest
+voc_size = [100]; % we'll choose this the largest
 dense = [0, 1];
 colorspace = {'gray', 'rgb', 'caps_rgb', 'opp'};
 trainingSizes = [1, 5, 10]; % we'll choose this the largest
@@ -17,6 +17,7 @@ for d=1:size(dense, 2)
                 buildBins(1, max(trainingSizes), v, 'test', dense(d), colorspace{c});
                 for trainSize=1:size(trainingSizes, 2)
                    [AP, MAP] = newStatistics(dense(d), colorspace{c}, '-b 1 -q', trainingSizes(trainSize))
+                   disp(strcat('Fraction correct:',32,num2str(getCorrect(dense(d), colorspace{c}, '-b 1 -q', trainingSizes(trainSize)))));
                 end
             end
         end
