@@ -1,6 +1,6 @@
 function [truthValue, probability, prediction ] = predictClass( classifiers, hist, trueClass )
 
-truth = zeros(4, 1);
+truth = -ones(4, 1);
 truth(trueClass) = 1;
 
 [pred1, ~, prob1] = svmpredict(truth(1), hist, classifiers(1), '-q');
