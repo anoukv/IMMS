@@ -1,0 +1,17 @@
+function [ output_args ] = newStatistics( dense, colorspace, kernel, trainingSize )
+
+classNames = {'motorbikes_test', 'cars_test', 'faces_test', 'airplanes_test'};
+classifiers = getClassClassifiers(dense, colorspace, kernel, trainingSize);
+
+rankedList
+for i=1:size(classNames, 2)
+    [data, truth] = generateData( classNames{i}, 'test', dense, colorspace, trainingSize );
+    classifierForclass = classifiers(i);
+    [prediction, accuracy, probability] = svmpredict(truth, data, classifierForclass, '-q 1');
+    
+end
+
+
+
+end
+

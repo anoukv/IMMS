@@ -20,7 +20,7 @@ end
 positiveExamples = loadBins(class, dense, colorspace);
 positiveExamples = positiveExamples(1:trainingSize, :);
 
-truth = [ones(size(positiveExamples, 1), 1);zeros(size(negativeExamples, 1), 1)];
+truth = [ones(size(positiveExamples, 1), 1); -1 * ones(size(negativeExamples, 1), 1)];
 data = [positiveExamples;negativeExamples];
 
 end
