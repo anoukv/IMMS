@@ -3,7 +3,7 @@ voc_size = [50]; % we'll choose this the largest
 numberOfImagesPerClass = [10]; % we'll choose this the largest
 dense = [0, 1];
 colorspace = {'gray', 'rgb', 'caps_rgb', 'opp'};
-trainingSizes = [199]; % we'll choose this the largest
+trainingSizes = [10]; % we'll choose this the largest
 
 resultsForColorSpaces = zeros(2*size(colorspace, 2), 1);
 

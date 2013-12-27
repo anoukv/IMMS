@@ -4,6 +4,7 @@ if strcmp(trainOrTest, 'train')
     classNames = {'motorbikes_train', 'cars_train', 'faces_train', 'airplanes_train'};
 else
     classNames = {'motorbikes_test', 'cars_test', 'faces_test', 'airplanes_test'};
+    trainingSize = min(50, trainingSize);
 end
 
 negativeExamples = zeros(0, 0);
