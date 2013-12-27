@@ -4,7 +4,9 @@ numberOfImagesPerClass = [5]; % we'll choose this the largest
 voc_size = [100]; % we'll choose this the largest
 dense = [0, 1];
 colorspace = {'gray', 'rgb', 'caps_rgb', 'opp'};
-trainingSizes = [1, 5, 10]; % we'll choose this the largest
+trainingSizes = 20:20:200; % we'll choose this the largest
+
+buildScript( max(trainingSizes), voc_size, numberOfImagesPerClass, 1, 1, 0 );
 
 % Results array
 resultsForColorSpaces = zeros(2*size(colorspace, 2), 1);
