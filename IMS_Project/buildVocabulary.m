@@ -1,4 +1,7 @@
 function [ ] = buildVocabulary(clusterSizes, numberOfImagesPerClass, dens, colorspace)
+% Builds a vocabulary of words (clusters) for specific settings.
+%
+
 start = clock;
 
 allDescriptors = loadAllDescriptors(numberOfImagesPerClass, dens, colorspace);

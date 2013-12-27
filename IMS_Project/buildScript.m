@@ -1,4 +1,8 @@
 function [] = buildScript( sizeOfRun, vocSizes, vocNimages, doDescriptors, doVocabulary, doBins )
+% Calculates and stores a lot of stuff.
+% First calculates and stores descriptors.
+% Then calculates vocabularies for various sizes from a number of images.
+% Finally calculates the bins for every image and vocabulary.
 
 testSize = 50;
 if sizeOfRun < testSize
