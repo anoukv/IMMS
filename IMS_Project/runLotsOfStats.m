@@ -1,10 +1,12 @@
 
+% Parameters to get statistics for:
 numberOfImagesPerClass = [5]; % we'll choose this the largest
 voc_size = [100]; % we'll choose this the largest
 dense = [0, 1];
 colorspace = {'gray', 'rgb', 'caps_rgb', 'opp'};
 trainingSizes = [1, 5, 10]; % we'll choose this the largest
 
+% Results array
 resultsForColorSpaces = zeros(2*size(colorspace, 2), 1);
 
 for d=1:size(dense, 2)
