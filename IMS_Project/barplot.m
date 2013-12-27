@@ -2,7 +2,7 @@ function [] = barplot()
 
 % Different sifts over different training sizes
 dense = [0,1];
-colorspace = {'gray', 'rgb', 'caps_rgb', 'opp'};
+colorspace = {'gray'}; %, 'rgb', 'caps_rgb', 'opp'};
 trainingSize = 200; % we'll choose this the largest
 vocabularySize = 100;
 vocTrainSize = 5;
@@ -24,7 +24,7 @@ for d=1:size(dense, 2)
         for i=1:size(kernels,2)
             [~, MAP] = newStatistics(dense(d), colorspace{c}, kernels{i}, trainingSize);
             MAPs = [MAPs; MAP];
-            name = strcat(densNames{d},32,colorNames{c},32,kernelsNames{i});
+            name = strcat(densNames{d},32,kernelsNames{i});
             labels = [labels; name];
         end
     end
