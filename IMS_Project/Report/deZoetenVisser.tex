@@ -25,6 +25,7 @@ As an evaluation measure we have used the Mean Average Precision. We provide eve
 \section{Evaluation}
 
 \subsection{Size of the training set}
+\label{train}
 The first experiment we will discuss measures the performance of the system for all different methods of SIFT (dense and key point combined with all colorspaces results in eight methods). We have set out the Mean Average Precision against the number of images that were used to train the SVM. The results of this experiment can be found in figure \ref{trainingSizes}. The first thing that stands out is the rather large difference between the key point SIFT features and the dense SIFT features. It appears that dense SIFT features perform much better than key point SIFT features. Performance of all methods increases rapidly up until using approximately 40 training images. However, after this point there is only a slight increase in performance when increasing the training size. Only key point SIFT applied to the rob colorspace shows a sudden peak in performance, we are not sure whether this is actually happening or that we can consider this as noise in the data. 
 \begin{figure}[H]
   \centering
@@ -34,6 +35,13 @@ The first experiment we will discuss measures the performance of the system for 
 \end{figure}
 
 \subsection{Size of the vocabulary}
+Similar to the experiment described in section \ref{train} we have performed an experiment in which we measured performance for all different methods under varying vocabulary sizes, the results of which are shown in figure \ref{vocabularySizes}. 
+\begin{figure}[H]
+  \centering
+    \includegraphics[width=0.75\textwidth]{vocabularySizes}
+      \caption{}
+      \label{vocabularySizes}
+\end{figure}
 
 \section{Conclusion}
 In this report we have discussed our implementation of a system for image classification based on a Bag-of-Words approach. We have shown its performance for different sizes of the training data, different vocabulary sizes, different SIFT features for different colorspaces and different kernels used to train the SVM. Unfortunately we did not have the computing power to perform any larger tests (for instance larger vocabularies based on larger training sets). However, we found that the results using smaller vocabulary sizes were above expectations. 
