@@ -14,8 +14,7 @@ if doDescriptors
         disp(strcat('Started on color:',32, colorspaces{i}));
         for d=1:size(dens,2)
             buildDescriptors(sizeOfRun,'train', dens(d), colorspaces{i});
-%             buildDescriptors(testSize,'test', dens(d), colorspaces{i});
-
+            buildDescriptors(testSize,'test', dens(d), colorspaces{i});
         end
     end
 end
