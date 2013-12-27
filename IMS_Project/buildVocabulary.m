@@ -13,7 +13,8 @@ for i = 1:size(clusterSizes,1)
     % [~, clusters] = kmeans(allDescriptors, clusterSizes(i), 'start', 'cluster', 'options', statset('MaxIter', 20));
     try
         warning('off','all');
-        clusters = vl_kmeans(allDescriptors, clusterSizes(i), 'initialization', 'PLUSPLUS', 'algorithm', 'elkan');
+        clusters = vl_kmeans(allDescriptors', clusterSizes(i), 'initialization', 'PLUSPLUS', 'algorithm', 'elkan');
+        clusters = clusters';
         warning('on','all');
         save(strcat('../../IMS_data/Vocabulary_', int2str(clusterSizes(i)), 'x', int2str(numberOfImagesPerClass), suffix), 'clusters');
     catch

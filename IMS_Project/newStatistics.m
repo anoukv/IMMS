@@ -1,4 +1,6 @@
 function [ results, MAP ] = newStatistics( dense, colorspace, kernel, trainingSize )
+% Returns MAP for a specific configuration.
+%
 
 classNames = {'motorbikes_test', 'cars_test', 'faces_test', 'airplanes_test'};
 classifiers = getClassClassifiers(dense, colorspace, kernel, trainingSize);
@@ -13,7 +15,6 @@ for i=1:size(classNames, 2)
     results(i) = AP;
 end
 MAP = sum(results) / size(classNames, 2);
-
 
 end
 

@@ -1,5 +1,7 @@
 
 function [score] = getCorrect(dens, colorspace, kernel, trainingSize)
+% Returns the fraction correctly classified images for all classes.
+% Selects class according to predictClass.
 
 classNames = {'motorbikes_test', 'cars_test', 'faces_test', 'airplanes_test'};
 
