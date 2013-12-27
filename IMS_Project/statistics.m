@@ -1,4 +1,4 @@
-function [] = statistics(dense, colorspace, kernel, trainingSize)
+function [results] = statistics(dense, colorspace, kernel, trainingSize)
 
 classifiers = getClassClassifiers(dense, colorspace, kernel, trainingSize);
 
