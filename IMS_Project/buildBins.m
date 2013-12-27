@@ -1,4 +1,7 @@
 function [] = buildBins(startNumber, numberOfImagesPerClass, Vocabulary, trainOrTest, dens, colorspace )
+% Builds bins for specific parameters.
+% 
+
 start = clock;
 
 if strcmp(trainOrTest, 'train')
