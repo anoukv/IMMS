@@ -7,8 +7,8 @@ function [ classifiers ] = getClassClassifiers(dense, colorspace)
 
 % from http://www.csie.ntu.edu.tw/~cjlin/libsvm/
 
-svmopts = '-c 2 -g 1 -t 1';
-
+% svmopts = '-c 2 -g 1 -t 0';
+svmopts = '-t 2';
 classNames = {'motorbikes_test', 'cars_test', 'faces_test', 'airplanes_test'};
 
 

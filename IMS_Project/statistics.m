@@ -32,7 +32,6 @@ end
 
 function [precision, AP] = averagePrecision(data)
 % data should be in format: [truthValue]
-
 Mc = sum(data);
 n = size(data, 1);
 summationResult = 0;

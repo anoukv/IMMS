@@ -28,7 +28,7 @@ for i = 1:size(folderNames, 2)
         images = sortedImageNames;
     end
     
-    for im = 1:size(images, 1)
+    for im = 50:size(images, 1)
         desc = getFeaturesForImage( fullfile(folder, images{im}), dens, colorspace);
         if ~ isequal(desc,0)
             save(strcat('../../IMS_data/Descriptors/', classNames{i}, '/image', int2str(im), suffix), 'desc');

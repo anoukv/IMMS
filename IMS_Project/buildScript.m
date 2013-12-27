@@ -5,8 +5,7 @@ if sizeOfRun < testSize
     testSize = sizeOfRun;
 end
 
-% colorspaces = {'rgb', 'caps_rgb', 'gray', 'opp'};
-colorspaces = {'opp'};
+colorspaces = {'rgb', 'caps_rgb', 'gray', 'opp'};
 dens = [1,0];
 
 if doDescriptors
@@ -15,7 +14,7 @@ if doDescriptors
         disp(strcat('Started on color:',32, colorspaces{i}));
         for d=1:size(dens,2)
             buildDescriptors(sizeOfRun,'train', dens(d), colorspaces{i});
-            buildDescriptors(testSize,'test', dens(d), colorspaces{i});
+%             buildDescriptors(testSize,'test', dens(d), colorspaces{i});
 
         end
     end
