@@ -6,7 +6,7 @@ results = zeros(size(classNames, 2), 1);
 for i=1:size(classNames, 2)
     [data, truth] = generateData( classNames{i}, 'test', dense, colorspace, trainingSize );
     classifierForclass = classifiers(i);
-    [~, ~, probability] = svmpredict(truth, data, classifierForclass, '-b 1 -q 1');
+    [pred, acc, probability] = svmpredict(truth, data, classifierForclass, '-b 1 -q 1');
     ranker = [truth, probability(:, 1)];
     ranker = sortrows(ranker, -2);
     AP = averagePrecision(ranker(:, 1));
@@ -27,7 +27,13 @@ n = size(data, 1);
 summationResult = 0;
 
 for i = 1:n
-    summationResult = summationResult + data(i) / i;
+    if data(i) ==  1
+        numberOfRelevantImages = sum(data(1:i));
+    else
+        numberOfRelevantImages = 0;
+    end
+    
+    summationResult = summationResult + numberOfRelevantImages / i;
 end
 
 summationResult = summationResult / Mc;
