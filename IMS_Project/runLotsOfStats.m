@@ -1,6 +1,6 @@
 
-voc_size = [50]; % we'll choose this the largest
-numberOfImagesPerClass = [10]; % we'll choose this the largest
+voc_size = [3]; % we'll choose this the largest
+numberOfImagesPerClass = [4]; % we'll choose this the largest
 dense = [0, 1];
 colorspace = {'gray', 'rgb', 'caps_rgb', 'opp'};
 trainingSizes = [10]; % we'll choose this the largest
@@ -16,7 +16,7 @@ for d=1:size(dense, 2)
                 buildBins(1, max(trainingSizes), v, 'train', dense(d), colorspace{c});
                 buildBins(1, max(trainingSizes), v, 'test', dense(d), colorspace{c});
                 for trainSize=1:size(trainingSizes, 2)
-                   [AP, MAP] = newStatistics(dense(d), colorspace{c}, '-b 1 -t 2 -q 1', trainingSizes(trainSize))
+                   [AP, MAP] = newStatistics(dense(d), colorspace{c}, '-b 1 -t 1 -q 1', trainingSizes(trainSize))
                 end
             end
         end
