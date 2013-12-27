@@ -1,4 +1,4 @@
-function [ classifiers ] = getClassClassifiers(dense, colorspace)
+function [ classifiers ] = getClassClassifiers(dense, colorspace, kernel, trainingSize)
 % -t kernel_type : set type of kernel function (default 2)
 % 	0 -- linear: u'*v
 % 	1 -- polynomial: (gamma*u'*v + coef0)^degree
@@ -8,13 +8,13 @@ function [ classifiers ] = getClassClassifiers(dense, colorspace)
 % from http://www.csie.ntu.edu.tw/~cjlin/libsvm/
 
 % svmopts = '-c 2 -g 1 -t 0';
-svmopts = '-t 2';
-classNames = {'motorbikes_test', 'cars_test', 'faces_test', 'airplanes_test'};
+%svmopts = '-t 2';
+classNames = {'motorbikes_train', 'cars_train', 'faces_train', 'airplanes_train'};
 
 
 for i = 1:size(classNames, 2)
-    [training, groundTruth] = generateData( classNames{i}, 'train', dense, colorspace );
-    model = svmtrain(groundTruth, training, svmopts);
+    [training, groundTruth] = generateData( classNames{i}, 'train', dense, colorspace, trainingSize );
+    model = svmtrain(groundTruth, training, kernel);
     classifiers(1, i) = model;
 end
 

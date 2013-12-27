@@ -1,6 +1,6 @@
-function [] = statistics(dense, colorspace)
+function [] = statistics(dense, colorspace, kernel, trainingSize)
 
-classifiers = getClassClassifiers(dense, colorspace);
+classifiers = getClassClassifiers(dense, colorspace, kernel, trainingSize);
 
 classNames = {'motorbikes_test', 'cars_test', 'faces_test', 'airplanes_test'};
 
@@ -12,7 +12,6 @@ for i=1:size(classNames,2)
         chaosMatrix(size(chaosMatrix,1) +1, :) = [truthValue, prob, prediction];   
     end
 end
-
 motorbikes = sortrows(chaosMatrix((chaosMatrix(:, 3) == 1) == 1, :), -2);
 cars = sortrows(chaosMatrix((chaosMatrix(:, 3) == 2) == 1, :), -2);
 faces = sortrows(chaosMatrix((chaosMatrix(:, 3) == 3) == 1, :), -2);
