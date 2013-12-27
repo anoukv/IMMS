@@ -1,4 +1,4 @@
-function [results] = statistics(dense, colorspace, kernel, trainingSize)
+function [results, MAP] = statistics(dense, colorspace, kernel, trainingSize)
 
 classifiers = getClassClassifiers(dense, colorspace, kernel, trainingSize);
 
@@ -24,8 +24,8 @@ airplanes = sortrows(chaosMatrix((chaosMatrix(:, 3) == 4) == 1, :), -2);
 
 ap = [ap1;ap2;ap3;ap4];
 precision = [p1;p2;p3;p4];
-results = [ap, precision]
-MAP = sum(ap) / 4
+results = [ap, precision];
+MAP = sum(ap) / 4;
 
 end
 
