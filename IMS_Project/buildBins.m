@@ -4,6 +4,7 @@ function [] = buildBins(startNumber, numberOfImagesPerClass, Vocabulary, trainOr
 
 start = clock;
 
+% we use different names for train and test
 if strcmp(trainOrTest, 'train')
     classNames = {'motorbikes_train', 'cars_train', 'faces_train', 'airplanes_train'};
 else
@@ -11,6 +12,11 @@ else
 end
 
 suffix = strcat('_', int2str(dens), '_', colorspace);
+
+% for every class we will look at every image 
+% we load the descriptor for the image
+% we call quantize to make a histogram representation for the image
+% save the result
 for i = 1:size(classNames, 2)
     folder = strcat('../../IMS_data/Descriptors/', classNames{i});
     

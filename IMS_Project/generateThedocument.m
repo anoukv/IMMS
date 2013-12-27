@@ -1,21 +1,15 @@
-function [ results, MAP ] = newStatistics( dense, colorspace, kernel, trainingSize )
-% Returns MAP for a specific configuration.
+function [  ] = generateThedocument(dense, colorspace, kernel, trainingSize, vocSize, vocTrain   )
+% this looks A LOT like newStatistics
 
-% get all the classifiers
+v = loadVocabulary(vocSize, vocTrain, dense, colorspace);
+buildBins(1, trainingSize, v, 'train', dense, colorspace);
+buildBins(1, trainingSize, v, 'test', dense, colorspace);
+
 classNames = {'motorbikes_test', 'cars_test', 'faces_test', 'airplanes_test'};
 classifiers = getClassClassifiers(dense, colorspace, kernel, trainingSize);
 
-% loop over classes
-% generate test data for this class
-% select the classifier for the class from classifiers
-% make a prediction based on that classifier
-% the first column of probability holds the probability that the image is
-% classified as '1' (i.e. belonging to the class). Combine this
-% probality with the ground truth in ranker
-% sort ranker based on the probabilities (descending), this will also
-% change the order of the ground truth
-% use the ground truth to calculate the average precision
 results = zeros(size(classNames, 2), 1);
+allRankedLists = zeros(0, 0);
 for i=1:size(classNames, 2)
     [data, truth] = generateData( classNames{i}, 'test', dense, colorspace, trainingSize );
     classifierForclass = classifiers(i);
@@ -24,12 +18,16 @@ for i=1:size(classNames, 2)
     ranker = sortrows(ranker, -2);
     AP = averagePrecision(ranker(:, 1));
     results(i) = AP;
+    allRankedLists(:, [size(allRankedLists, 2)+1, size(allRankedLists, 2)+2]) = ranker;
 end
-
-% calculate MAP by averageing APs
 MAP = sum(results) / size(classNames, 2);
+allRankedLists
+MAP
+results
 
 end
+
+
 
 
 function [ AP] = averagePrecision(data)

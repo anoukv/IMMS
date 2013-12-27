@@ -9,7 +9,8 @@ function [ classifiers ] = getClassClassifiers(dense, colorspace, kernel, traini
 
 classNames = {'motorbikes_train', 'cars_train', 'faces_train', 'airplanes_train'};
 
-
+% use generateData(...) to generate data, then train the svm and save each
+% classifier in the classifiers array
 for i = 1:size(classNames, 2)
     [training, groundTruth] = generateData( classNames{i}, 'train', dense, colorspace, trainingSize );
     model = svmtrain(groundTruth, training, kernel);

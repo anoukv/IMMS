@@ -1,5 +1,6 @@
 function [ descriptors ] = getFeaturesForImage( location, dens, colorspace)
-
+% read the image, if necessary leave out non-colored images (we cannot use
+% these, because we also want to do for example rgbSIFT). 
 thisImage = imread(location);
 
 if ndims(thisImage) ~= 3    % Not all images are coloured.
@@ -9,6 +10,7 @@ else
     binSize = 10;
     descriptors = zeros(0,0);
     
+    % determine which sift we are going to use
     if dens
         sift = @vl_dsift;
     else

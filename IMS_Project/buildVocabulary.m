@@ -4,16 +4,17 @@ function [ ] = buildVocabulary(clusterSizes, numberOfImagesPerClass, dens, color
 
 start = clock;
 
+% load all descriptors and change them to singles
 allDescriptors = loadAllDescriptors(numberOfImagesPerClass, dens, colorspace);
 allDescriptors = single(allDescriptors);
 
 suffix = strcat('_', int2str(dens), '_', colorspace);
 clusterSizes = clusterSizes';
+
+% for every specified clustersize try to run kmeans
+% sometimes it will return an empty cluster error, we catch this error and
+% call this method again, hoping for better luck next time...
 for i = 1:size(clusterSizes,1)
-    
-    % clusters = vl_kmeans(allDescriptors, clusterSizes(i));
-    % [~, clusters] = kmeans(allDescriptors, clusterSizes(i), 'options', statset('MaxIter', 100));
-    % [~, clusters] = kmeans(allDescriptors, clusterSizes(i), 'start', 'cluster', 'options', statset('MaxIter', 20));
     try
         warning('off','all');
         clusters = vl_kmeans(allDescriptors', clusterSizes(i), 'initialization', 'PLUSPLUS', 'algorithm', 'elkan');

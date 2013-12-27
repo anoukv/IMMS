@@ -1,6 +1,7 @@
 function [] = buildDescriptors( last, trainOrTest, dens, colorspace )
 start = clock;
 
+% distinguish between train/test
 if strcmp(trainOrTest, 'train')
     folderNames = {'data/motorbikes_train', 'data/cars_train', 'data/faces_train', 'data/airplanes_train'};
     classNames = {'motorbikes_train', 'cars_train', 'faces_train', 'airplanes_train'};
@@ -12,6 +13,11 @@ end
 extension = '*.jpg';
 
 suffix = strcat('_', int2str(dens), '_', colorspace);
+
+% go over all classes, get all images
+% go over all images and get the features for those images
+% the features and the name of the resulting file depend on the parameters
+% given to this function (dense, colorspace, etc..)
 for i = 1:size(folderNames, 2)
     folder = folderNames{i};
     imageNames = dir(fullfile(folder,extension));
@@ -28,7 +34,7 @@ for i = 1:size(folderNames, 2)
         images = sortedImageNames;
     end
     
-    for im = 50:size(images, 1)
+    for im = 1:size(images, 1)
         desc = getFeaturesForImage( fullfile(folder, images{im}), dens, colorspace);
         if ~ isequal(desc,0)
             save(strcat('../../IMS_data/Descriptors/', classNames{i}, '/image', int2str(im), suffix), 'desc');
