@@ -1,6 +1,6 @@
 
-voc_size = [100]; % we'll choose this the largest
 numberOfImagesPerClass = [5]; % we'll choose this the largest
+voc_size = [100]; % we'll choose this the largest
 dense = [0, 1];
 colorspace = {'gray', 'rgb', 'caps_rgb', 'opp'};
 trainingSizes = [200]; % we'll choose this the largest
