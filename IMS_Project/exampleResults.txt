@@ -1,4 +1,4 @@
-% Following shows a function call for which the output is pasted below.
+ % Following shows a function call for which the output is pasted below.
 % allRankedLists shows the results of 4 classifiers, each showing
 % two rows, first row with classificatio (1 correct, -1 incorrect) and
 % second row the svm probability estimate.
